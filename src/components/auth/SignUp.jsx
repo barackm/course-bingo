@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import AuthTextInput from '../common/AuthTextInput';
 import SubmitBtn from '../common/SubmitBtn';
 
@@ -10,7 +11,7 @@ class SignUp extends Component {
 
   render() {
     return (
-      <div className="login-page-main-container d-flex flex-column">
+      <div className="login-page-main-container signup d-flex flex-column">
         <div className="login-overlay" />
 
         <form className="login-page-main d-flex flex-column flex-center">
@@ -22,20 +23,23 @@ class SignUp extends Component {
               Let&apos;s create an account to start managing your courses.
             </p>
           </div>
-          <AuthTextInput
-            onChange={() => {}}
-            placeholder="Firstname"
-            value=""
-            name="firstname"
-            focus
-          />
-          <AuthTextInput
-            onChange={() => {}}
-            placeholder="Lastname"
-            value=""
-            name="lastname"
-            focus
-          />
+          <div className="names-wrapper d-flex">
+            <AuthTextInput
+              onChange={() => {}}
+              placeholder="Firstname"
+              value=""
+              name="firstname"
+              focus
+            />
+            <div className="input-separator" />
+            <AuthTextInput
+              onChange={() => {}}
+              placeholder="Lastname"
+              value=""
+              name="lastname"
+              focus
+            />
+          </div>
           <AuthTextInput
             onChange={() => {}}
             placeholder="Email"
@@ -62,9 +66,9 @@ class SignUp extends Component {
         </form>
         <div className="signup-details d-flex flex-center">
           Already have an account?
-          <a href="#f" className="sign-up-link">
+          <Link to="/login" className="sign-up-link">
             Sign in here
-          </a>
+          </Link>
         </div>
       </div>
     );

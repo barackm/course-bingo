@@ -25,6 +25,11 @@
   margin-right: 6rem;
 }
 
+.login-page-main-container.signup .login-page-main {
+  margin-left: 4rem;
+  margin-right: 4rem;
+}
+
 .login-header {
   margin-bottom: 2rem;
 }
@@ -39,6 +44,10 @@
   color: var(--dark);
   transition: var(--defaut-transition);
   font-weight: bold;
+}
+
+.input-separator {
+  margin: 0 0.5rem;
 }
 
 .sign-up-link:hover {

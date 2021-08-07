@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import AuthTextInput from '../common/AuthTextInput';
 import SubmitBtn from '../common/SubmitBtn';
 
@@ -40,9 +41,9 @@ class Login extends Component {
         </form>
         <div className="signup-details d-flex flex-center">
           Don&apos;t have an account yet?
-          <a href="#f" className="sign-up-link">
+          <Link to="/signup" className="sign-up-link">
             Sign up here
-          </a>
+          </Link>
         </div>
       </div>
     );
