@@ -37,7 +37,7 @@ class Login extends Component {
             name="password"
             onChange={() => {}}
           />
-          <SubmitBtn label="Sign in" />
+          <SubmitBtn label="Sign in" onClick={() => {}} />
         </form>
         <div className="signup-details d-flex flex-center">
           Don&apos;t have an account yet?

@@ -62,7 +62,7 @@ class SignUp extends Component {
             name="password"
             onChange={() => {}}
           />
-          <SubmitBtn label="Sign up" />
+          <SubmitBtn label="Sign up" onClick={() => {}} />
         </form>
         <div className="signup-details d-flex flex-center">
           Already have an account?
