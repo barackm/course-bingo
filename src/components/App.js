@@ -1,9 +1,11 @@
-import Login from './auth/Login';
+// import Login from './auth/Login';
+import SignUp from './auth/SignUp';
 
 function App() {
   return (
     <div className="App">
-      <Login />
+      {/* <Login /> */}
+      <SignUp />
     </div>
   );
 }
