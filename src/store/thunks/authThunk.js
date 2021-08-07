@@ -18,12 +18,14 @@ const storageKey = 'auth_token';
 export const signupUserAsync = (user) => async (dispatch) => {
   dispatch(authApiCallStart());
   try {
-    const response = await axios.post(`${endPoint}/users`, user);
+    const response = await axios.post(`${endPoint}/users`, { user });
     storage.set(storageKey, response.data);
     const loggedInUser = jwt.decode(response.data);
     dispatch(signupSuccess(loggedInUser));
+    toast.success(`Welcome ${loggedInUser.first_name}!`);
   } catch (error) {
     dispatch(signupFailure(error.response.data.message));
+    toast.error(error.response.data.message || 'Something went wrong!');
   }
 };
 

@@ -1,20 +1,58 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import AuthTextInput from '../common/AuthTextInput';
+import PropTypes from 'prop-types';
+import * as Yup from 'yup';
+import { signupUserAsync } from '../../store/thunks/authThunk';
+import AppForm from '../common/AppForm';
+import AppInput from '../common/AppInput';
 import SubmitBtn from '../common/SubmitBtn';
 
-class SignUp extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
+const validationSchema = Yup.object().shape({
+  email: Yup.string()
+    .email('Enter valid email')
+    .required('Email is required')
+    .label('Email'),
+  password: Yup.string()
+    .required('Password is required')
+    .min(6)
+    .label('Password'),
+  passwordConfirmation: Yup.string()
+    .required('Password confirmation is required')
+    .min(6)
+    .label('Password confirmation'),
+  firstname: Yup.string().min(3).max(250).required('Firstname is required'),
+  lastname: Yup.string().min(3).max(250).required('Lastname is required'),
+});
 
-  render() {
-    return (
-      <div className="login-page-main-container signup d-flex flex-column">
-        <div className="login-overlay" />
+const SignUp = (props) => {
+  const handleSubmit = (values) => {
+    const { signupUser } = props;
+    const user = {
+      email: values.email,
+      password: values.password,
+      first_name: values.firstname,
+      last_name: values.lastname,
+      password_confirmation: values.passwordConfirmation,
+    };
+    signupUser(user);
+  };
 
-        <form className="login-page-main d-flex flex-column flex-center">
+  return (
+    <div className="login-page-main-container signup d-flex flex-column">
+      <div className="login-overlay" />
+      <AppForm
+        initialValues={{
+          email: '',
+          password: '',
+          firstname: '',
+          lastname: '',
+          passwordConfirmation: '',
+        }}
+        onSubmit={handleSubmit}
+        validationSchema={validationSchema}
+      >
+        <form className="login-page-main d-flex flex-column">
           <div className="login-header d-flex flex-center flex-column text-center">
             <h1>Sign up</h1>
             <p>
@@ -23,56 +61,34 @@ class SignUp extends Component {
               Let&apos;s create an account to start managing your courses.
             </p>
           </div>
-          <div className="names-wrapper d-flex">
-            <AuthTextInput
-              onChange={() => {}}
-              placeholder="Firstname"
-              value=""
-              name="firstname"
-              focus
-            />
-            <div className="input-separator" />
-            <AuthTextInput
-              onChange={() => {}}
-              placeholder="Lastname"
-              value=""
-              name="lastname"
-              focus
-            />
-          </div>
-          <AuthTextInput
-            onChange={() => {}}
-            placeholder="Email"
-            value=""
-            type="email"
-            name="email"
-            focus
-          />
-          <AuthTextInput
-            placeholder="Password"
-            value=""
+          <AppInput type="text" name="firstname" placeholder="Firstname" />
+          <AppInput type="text" name="lastname" placeholder="Latname" />
+          <AppInput type="email" name="email" placeholder="Email" />
+          <AppInput type="password" name="password" placeholder="Password" />
+          <AppInput
             type="password"
-            name="password"
-            onChange={() => {}}
-          />
-          <AuthTextInput
+            name="passwordConfirmation"
             placeholder="Confirm Password"
-            value=""
-            type="password"
-            name="password"
-            onChange={() => {}}
           />
-          <SubmitBtn label="Sign up" onClick={() => {}} />
+          <SubmitBtn type="submit" label="Sign up" />
         </form>
-        <div className="signup-details d-flex flex-center">
-          Already have an account?
-          <Link to="/login" className="sign-up-link">
-            Sign in here
-          </Link>
-        </div>
+      </AppForm>
+      <div className="signup-details d-flex flex-center">
+        Already have an account?
+        <Link to="/login" className="sign-up-link">
+          Sign in here
+        </Link>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
-export default SignUp;
+SignUp.propTypes = {
+  signupUser: PropTypes.func.isRequired,
+};
+
+const mapDispatchToProps = {
+  signupUser: (user) => signupUserAsync(user),
+};
+
+export default connect(null, mapDispatchToProps)(SignUp);
