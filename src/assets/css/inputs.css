@@ -1,5 +1,6 @@
 input {
   border: none;
+  background-color: transparent;
 }
 
 .auth-text-input-main-wrapper {
@@ -7,6 +8,7 @@ input {
   border-radius: var(--input-border-radius);
   padding: var(--input-padding);
   margin-bottom: 1rem;
+  transition: var(--default-transition);
 }
 
 .auth-text-input-main-wrapper .input-container input {
@@ -16,6 +18,7 @@ input {
 
 .auth-text-input-main-wrapper .input-container input::placeholder {
   text-align: center;
+  color: var(--dark);
 }
 
 .auth-text-input-main-wrapper:focus-within {

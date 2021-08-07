@@ -5,7 +5,7 @@ import { BiErrorCircle, BiCheckCircle } from 'react-icons/bi';
 
 const AuthTextInput = (props) => {
   const {
-    error, placeholder, type, value, onChange, name,
+    error, placeholder, type, value, onChange, name, focus,
   } = props;
   return (
     <div
@@ -22,6 +22,7 @@ const AuthTextInput = (props) => {
           name={name}
           placeholder={placeholder}
           onChange={onChange}
+          focus={focus}
           className="d-flex flex-unit flex-center text-center"
         />
       </div>
@@ -45,6 +46,7 @@ AuthTextInput.defaultProps = {
   placeholder: '',
   type: 'text',
   value: '',
+  focus: false,
 };
 
 AuthTextInput.propTypes = {
@@ -54,5 +56,6 @@ AuthTextInput.propTypes = {
   value: PropTypes.string,
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
+  focus: PropTypes.bool,
 };
 export default AuthTextInput;

@@ -14,8 +14,8 @@
   --desktop: 1200px;
   --mobile: 480px;
   --border: 1px solid rgba(0, 0, 0, 0.1);
-  --border-width: 0.12rem;
-  --border-light: rgba(0, 0, 0, 0.1);
+  --border-width: 0.14rem;
+  --border-light: rgba(0, 0, 0, 0.247);
   --input-border-radius: 3rem;
   --input-padding: 0.5rem;
   --input-font-size: 1rem;

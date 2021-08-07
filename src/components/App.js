@@ -1,21 +1,9 @@
-import AuthTextInput from './common/AuthTextInput';
+import Login from './auth/Login';
 
 function App() {
   return (
     <div className="App">
-      <AuthTextInput
-        onChange={() => {}}
-        placeholder="Email"
-        value="hello there"
-        name="email"
-      />
-      <AuthTextInput
-        placeholder="Password"
-        value="hello there"
-        type="password"
-        name="password"
-        onChange={() => {}}
-      />
+      <Login />
     </div>
   );
 }
