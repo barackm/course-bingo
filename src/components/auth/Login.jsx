@@ -1,20 +1,35 @@
-import React, { Component } from 'react';
+import React from 'react';
+import * as Yup from 'yup';
 import { Link } from 'react-router-dom';
-import AuthTextInput from '../common/AuthTextInput';
 import SubmitBtn from '../common/SubmitBtn';
+import AppForm from '../common/AppForm';
+import AppInput from '../common/AppInput';
 
-class Login extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
+const validationSchema = Yup.object().shape({
+  email: Yup.string()
+    .email('Enter valid email')
+    .required('Email is required')
+    .label('Email'),
+  password: Yup.string()
+    .required('Password is required')
+    .min(6)
+    .label('Password'),
+});
 
-  render() {
-    return (
-      <div className="login-page-main-container d-flex flex-column">
-        <div className="login-overlay" />
+const Login = () => {
+  const handleSubmit = (values) => {
+    console.log(values, 'submitting...');
+  };
 
-        <form className="login-page-main d-flex flex-column flex-center">
+  return (
+    <div className="login-page-main-container d-flex flex-column">
+      <div className="login-overlay" />
+      <AppForm
+        initialValues={{ email: '', password: '' }}
+        onSubmit={handleSubmit}
+        validationSchema={validationSchema}
+      >
+        <form className="login-page-main d-flex flex-column">
           <div className="login-header d-flex flex-center flex-column text-center">
             <h1>Sign in</h1>
             <p>
@@ -23,31 +38,19 @@ class Login extends Component {
               Let&apos;s Sign in to start managing your courses.
             </p>
           </div>
-          <AuthTextInput
-            onChange={() => {}}
-            placeholder="Email"
-            value=""
-            name="email"
-            focus
-          />
-          <AuthTextInput
-            placeholder="Password"
-            value=""
-            type="password"
-            name="password"
-            onChange={() => {}}
-          />
-          <SubmitBtn label="Sign in" onClick={() => {}} />
+          <AppInput type="email" name="email" placeholder="Email" />
+          <AppInput type="password" name="password" placeholder="Password" />
+          <SubmitBtn type="submit" label="Sign in" />
         </form>
-        <div className="signup-details d-flex flex-center">
-          Don&apos;t have an account yet?
-          <Link to="/signup" className="sign-up-link">
-            Sign up here
-          </Link>
-        </div>
+      </AppForm>
+      <div className="signup-details d-flex flex-center">
+        Don&apos;t have an account yet?
+        <Link to="/signup" className="sign-up-link">
+          Sign up here
+        </Link>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default Login;

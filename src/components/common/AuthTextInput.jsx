@@ -25,30 +25,28 @@ const AuthTextInput = (props) => {
           className="d-flex flex-unit flex-center text-center"
         />
       </div>
-      {value.trim().length > 0 && (
-        <div className="validation-icon-wrapper">
-          <IconContext.Provider
-            value={{
-              className: error ? 'auth-input-icon error' : 'auth-input-icon',
-            }}
-          >
-            {error ? <BiErrorCircle /> : <BiCheckCircle />}
-          </IconContext.Provider>
-        </div>
-      )}
+      <div className="validation-icon-wrapper">
+        <IconContext.Provider
+          value={{
+            className: error ? 'auth-input-icon error' : 'auth-input-icon',
+          }}
+        >
+          {error ? <BiErrorCircle /> : <BiCheckCircle />}
+        </IconContext.Provider>
+      </div>
     </div>
   );
 };
 
 AuthTextInput.defaultProps = {
-  error: false,
+  error: '',
   placeholder: '',
   type: 'text',
   value: '',
 };
 
 AuthTextInput.propTypes = {
-  error: PropTypes.bool,
+  error: PropTypes.string,
   placeholder: PropTypes.string,
   type: PropTypes.string,
   value: PropTypes.string,

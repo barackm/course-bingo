@@ -21,6 +21,7 @@
 
 .login-page-main {
   flex: 999;
+  width: 100%;
   margin-left: 6rem;
   margin-right: 6rem;
 }

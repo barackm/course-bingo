@@ -3,6 +3,10 @@ input {
   background-color: transparent;
 }
 
+input:focus {
+  background-color: transparent;
+}
+
 button {
   border: none;
   cursor: pointer;
@@ -14,12 +18,13 @@ button {
   padding: var(--input-padding);
   margin-bottom: 1.7rem;
   transition: var(--default-transition);
-  width: 100%;
+  position: relative;
 }
 
 .auth-text-input-main-wrapper .input-container input {
   outline: none;
   font-size: var(--input-font-size);
+  margin-right: 1.8rem;
 }
 
 .auth-text-input-main-wrapper .input-container input::placeholder {
@@ -52,8 +57,18 @@ button {
   border-radius: var(--input-border-radius);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.452);
   transition: var(--default-transition);
+  display: inline-block;
 }
 
 .submit-btn-wrapper:hover {
   background-color: var(--primary-hover);
+}
+
+.formik-inputs-wrapper {
+  flex: 1;
+}
+
+.validation-icon-wrapper {
+  position: absolute;
+  right: 0.5rem;
 }

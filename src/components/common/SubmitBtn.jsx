@@ -1,27 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useFormikContext } from 'formik';
 
 const SubmitBtn = (props) => {
-  const { label, type, onClick } = props;
+  const { label } = props;
+  const { handleSubmit, isSubmitting } = useFormikContext();
   return (
     <button
-      type={type === 'button' ? 'button' : 'submit'}
+      type="submit"
+      disabled={isSubmitting}
       className="submit-btn-wrapper"
-      onClick={onClick}
+      onClick={handleSubmit}
     >
       {label}
     </button>
   );
 };
 
-SubmitBtn.defaultProps = {
-  type: 'button',
-};
-
 SubmitBtn.propTypes = {
   label: PropTypes.string.isRequired,
-  type: PropTypes.string,
-  onClick: PropTypes.func.isRequired,
 };
 
 export default SubmitBtn;
