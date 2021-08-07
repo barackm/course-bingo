@@ -6,6 +6,7 @@
   background-repeat: no-repeat;
   position: relative;
   z-index: 99;
+  justify-content: space-between;
 }
 
 .login-overlay {
@@ -20,6 +21,31 @@
 
 .login-page-main {
   flex: 999;
-  margin-left: 5rem;
-  margin-right: 5rem;
+  margin-left: 6rem;
+  margin-right: 6rem;
+}
+
+.login-header {
+  margin-bottom: 2rem;
+}
+
+.signup-details {
+  margin: 3rem 0;
+  color: var(--dark);
+}
+
+.sign-up-link {
+  margin-left: 0.7rem;
+  color: var(--dark);
+  transition: var(--defaut-transition);
+  font-weight: bold;
+}
+
+.sign-up-link:hover {
+  color: var(--primary);
+}
+
+.login-header h1 {
+  margin: 0;
+  font-weight: 400;
 }

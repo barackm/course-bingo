@@ -3,12 +3,18 @@ input {
   background-color: transparent;
 }
 
+button {
+  border: none;
+  cursor: pointer;
+}
+
 .auth-text-input-main-wrapper {
   border: var(--border-width) solid var(--border-light);
   border-radius: var(--input-border-radius);
   padding: var(--input-padding);
-  margin-bottom: 1rem;
+  margin-bottom: 1.7rem;
   transition: var(--default-transition);
+  width: 100%;
 }
 
 .auth-text-input-main-wrapper .input-container input {
@@ -36,4 +42,18 @@ input {
 
 .auth-input-icon.error {
   color: var(--primary);
+}
+
+.submit-btn-wrapper {
+  background-color: var(--primary);
+  padding: 0.7rem 2.5rem;
+  font-size: var(--input-font-size);
+  color: var(--white);
+  border-radius: var(--input-border-radius);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.452);
+  transition: var(--default-transition);
+}
+
+.submit-btn-wrapper:hover {
+  background-color: var(--primary-hover);
 }
