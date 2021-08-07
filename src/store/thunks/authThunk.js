@@ -5,13 +5,16 @@ import {
   authApiCallStart,
   signupFailure,
   signupSuccess,
+  loginSuccess,
+  loginFailure,
+  authLogout,
 } from '../actions/actionCreators';
 import storage from '../../utils/localStorage';
 
 const endPoint = process.env.REACT_APP_API_END_POINT;
 const storageKey = 'auth_token';
 
-const signupUserAsync = (user) => async (dispatch) => {
+export const signupUserAsync = (user) => async (dispatch) => {
   dispatch(authApiCallStart());
   try {
     const response = await axios.post(`${endPoint}/users`, user);
@@ -23,4 +26,19 @@ const signupUserAsync = (user) => async (dispatch) => {
   }
 };
 
-export default signupUserAsync;
+export const loginUserAsync = (user) => async (dispatch) => {
+  dispatch(authApiCallStart());
+  try {
+    const response = await axios.post(`${endPoint}/sessions`, user);
+    storage.set(storageKey, response.data);
+    const loggedInUser = jwt.decode(response.data.data);
+    dispatch(loginSuccess(loggedInUser));
+  } catch (error) {
+    dispatch(loginFailure(error.response.data.message || 'Failed to login'));
+  }
+};
+
+export const logoutUser = () => (dispatch) => {
+  storage.remove(storageKey);
+  dispatch(authLogout());
+};
