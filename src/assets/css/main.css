@@ -2,7 +2,7 @@
   --dark: #333;
   --black: #111;
   --white: #fff;
-  --primary: #fbe0dc;
+  --primary: #ff7300;
   --light-weight: 400;
   --dark-light-color: rgb(61, 61, 61);
   --light-color: rgb(187, 187, 187);
@@ -13,6 +13,14 @@
   --tablet: 768px;
   --desktop: 1200px;
   --mobile: 480px;
+  --border: 1px solid rgba(0, 0, 0, 0.1);
+  --border-width: 0.12rem;
+  --border-light: rgba(0, 0, 0, 0.1);
+  --input-border-radius: 3rem;
+  --input-padding: 0.5rem;
+  --input-font-size: 1rem;
+  --input-icon-size: 1.2rem;
+  --success: #4caf50;
 }
 
 body {

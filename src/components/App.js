@@ -1,9 +1,21 @@
+import AuthTextInput from './common/AuthTextInput';
+
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>Wecome to Course Bingo</h1>
-      </header>
+      <AuthTextInput
+        onChange={() => {}}
+        placeholder="Email"
+        value="hello there"
+        name="email"
+      />
+      <AuthTextInput
+        placeholder="Password"
+        value="hello there"
+        type="password"
+        name="password"
+        onChange={() => {}}
+      />
     </div>
   );
 }

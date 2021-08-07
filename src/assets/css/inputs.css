@@ -1,0 +1,36 @@
+input {
+  border: none;
+}
+
+.auth-text-input-main-wrapper {
+  border: var(--border-width) solid var(--border-light);
+  border-radius: var(--input-border-radius);
+  padding: var(--input-padding);
+  margin-bottom: 1rem;
+}
+
+.auth-text-input-main-wrapper .input-container input {
+  outline: none;
+  font-size: var(--input-font-size);
+}
+
+.auth-text-input-main-wrapper .input-container input::placeholder {
+  text-align: center;
+}
+
+.auth-text-input-main-wrapper:focus-within {
+  border-color: var(--primary);
+}
+
+.auth-text-input-main-wrapper.error {
+  border-color: var(--primary);
+}
+
+.auth-input-icon {
+  font-size: var(--input-icon-size);
+  color: var(--success);
+}
+
+.auth-input-icon.error {
+  color: var(--primary);
+}
