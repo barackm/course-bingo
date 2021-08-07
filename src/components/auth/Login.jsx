@@ -1,9 +1,13 @@
 import React from 'react';
 import * as Yup from 'yup';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
 import SubmitBtn from '../common/SubmitBtn';
 import AppForm from '../common/AppForm';
 import AppInput from '../common/AppInput';
+import { loginUserAsync } from '../../store/thunks/authThunk';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string()
@@ -16,9 +20,10 @@ const validationSchema = Yup.object().shape({
     .label('Password'),
 });
 
-const Login = () => {
+const Login = (props) => {
   const handleSubmit = (values) => {
-    console.log(values, 'submitting...');
+    const { loginUser } = props;
+    loginUser(values);
   };
 
   return (
@@ -53,4 +58,12 @@ const Login = () => {
   );
 };
 
-export default Login;
+Login.propTypes = {
+  loginUser: PropTypes.func.isRequired,
+};
+
+const mapDispatchToProps = {
+  loginUser: () => loginUserAsync(),
+};
+
+export default connect(null, mapDispatchToProps)(Login);
