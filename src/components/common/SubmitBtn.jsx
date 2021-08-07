@@ -4,14 +4,9 @@ import { useFormikContext } from 'formik';
 
 const SubmitBtn = (props) => {
   const { label } = props;
-  const { handleSubmit, isSubmitting } = useFormikContext();
+  const { handleSubmit } = useFormikContext();
   return (
-    <button
-      type="submit"
-      disabled={isSubmitting}
-      className="submit-btn-wrapper"
-      onClick={handleSubmit}
-    >
+    <button type="submit" className="submit-btn-wrapper" onClick={handleSubmit}>
       {label}
     </button>
   );

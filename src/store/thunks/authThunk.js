@@ -1,5 +1,6 @@
 import axios from 'axios';
 import jwt from 'jsonwebtoken';
+import { toast } from 'react-toastify';
 
 import {
   authApiCallStart,
@@ -33,8 +34,10 @@ export const loginUserAsync = (user) => async (dispatch) => {
     storage.set(storageKey, response.data);
     const loggedInUser = jwt.decode(response.data.data);
     dispatch(loginSuccess(loggedInUser));
+    toast.success(`😊 ${response.data.message}`);
   } catch (error) {
-    dispatch(loginFailure(error.response.data.message || 'Failed to login'));
+    dispatch(loginFailure(error.response.data.message));
+    toast.error(`😢 ${error.response.data.message}` || 'Something went wrong');
   }
 };
 
