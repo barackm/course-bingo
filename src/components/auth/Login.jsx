@@ -26,6 +26,8 @@ const Login = (props) => {
     loginUser(values);
   };
 
+  const { loading } = props;
+
   return (
     <div className="login-page-main-container d-flex flex-column">
       <div className="login-overlay" />
@@ -45,7 +47,7 @@ const Login = (props) => {
           </div>
           <AppInput type="email" name="email" placeholder="Email" />
           <AppInput type="password" name="password" placeholder="Password" />
-          <SubmitBtn type="submit" label="Sign in" />
+          <SubmitBtn type="submit" label="Sign in" loading={loading} />
         </form>
       </AppForm>
       <div className="signup-details d-flex flex-center">
@@ -60,10 +62,14 @@ const Login = (props) => {
 
 Login.propTypes = {
   loginUser: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired,
 };
 
+const mapStateToProps = (state) => ({
+  loading: state.auth.loading,
+});
 const mapDispatchToProps = {
   loginUser: (user) => loginUserAsync(user),
 };
 
-export default connect(null, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

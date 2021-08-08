@@ -1,6 +1,5 @@
 import jwt from 'jsonwebtoken';
 import { toast } from 'react-toastify';
-import http from '../../services/http';
 
 import {
   authApiCallStart,
@@ -11,6 +10,7 @@ import {
   authLogout,
 } from '../actions/actionCreators';
 import storage from '../../utils/localStorage';
+import http from '../../services/http';
 
 const endPoint = process.env.REACT_APP_API_END_POINT;
 
@@ -38,7 +38,7 @@ export const loginUserAsync = (user) => async (dispatch) => {
     toast.success(`😊 ${response.data.message}`);
   } catch (error) {
     dispatch(loginFailure(error.response.data.message));
-    toast.error(`😢 ${error.response.data.message}` || 'Something went wrong');
+    toast.error(`😢 ${error.response.data.message}`);
   }
 };
 
