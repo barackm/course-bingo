@@ -13,13 +13,12 @@ import {
 import storage from '../../utils/localStorage';
 
 const endPoint = process.env.REACT_APP_API_END_POINT;
-const storageKey = 'auth_token';
 
 export const signupUserAsync = (user) => async (dispatch) => {
   dispatch(authApiCallStart());
   try {
     const response = await axios.post(`${endPoint}/users`, { user });
-    storage.set(storageKey, response.data);
+    storage.setAuthToken(response.data);
     const loggedInUser = jwt.decode(response.data);
     dispatch(signupSuccess(loggedInUser));
     toast.success(`Welcome ${loggedInUser.first_name}!`);
@@ -33,7 +32,7 @@ export const loginUserAsync = (user) => async (dispatch) => {
   dispatch(authApiCallStart());
   try {
     const response = await axios.post(`${endPoint}/sessions`, user);
-    storage.set(storageKey, response.data);
+    storage.setAuthToken(response.data);
     const loggedInUser = jwt.decode(response.data.data);
     dispatch(loginSuccess(loggedInUser));
     toast.success(`😊 ${response.data.message}`);
@@ -44,6 +43,6 @@ export const loginUserAsync = (user) => async (dispatch) => {
 };
 
 export const logoutUser = () => (dispatch) => {
-  storage.remove(storageKey);
+  storage.removeAuthToken();
   dispatch(authLogout());
 };
