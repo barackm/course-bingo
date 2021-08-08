@@ -8,6 +8,7 @@ import {
   LOAD_COURSES_SUCCESS,
   LOAD_COURSES_FAILURE,
   API_CALL_BEGIN,
+  TOGGLE_SIDEBAR,
 } from './actionTypes';
 
 export const apiCallBegin = () => ({
@@ -50,4 +51,8 @@ export const loadCoursesSuccess = (courses) => ({
 export const loadCoursesFailure = (error) => ({
   type: LOAD_COURSES_FAILURE,
   payload: error,
+});
+
+export const togleSidebar = () => ({
+  type: TOGGLE_SIDEBAR,
 });

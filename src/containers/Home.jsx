@@ -4,10 +4,12 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { IconContext } from 'react-icons';
 import { GoSearch } from 'react-icons/go';
+
 import Navbar from '../components/common/Navbar';
 import CoursesList from './CoursesList';
 import Counter from '../components/common/Counter';
 import { loadCoursesAsync } from '../store/thunks/coursesThunk';
+import Sidebar from '../components/Sidebar';
 
 const Home = (props) => {
   const {
@@ -19,6 +21,7 @@ const Home = (props) => {
   }, []);
   return (
     <div className="home-main-container">
+      <Sidebar currentUser={currentUser} />
       <div className="header">
         <Navbar
           title="courses"

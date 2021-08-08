@@ -27,6 +27,7 @@
   --input-icon-size: 1.6rem;
   --success: #4caf50;
   --gold: #ffd700;
+  --dark-light: rgba(51, 51, 51, 0.76);
 }
 
 body {

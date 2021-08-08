@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import defaultAvatar from '../assets/images/defaultAvataR.png';
+import defaultAvatar from '../assets/images/defaultAvatar.png';
 
 import Stars from './common/Stars';
 
@@ -20,11 +20,7 @@ const Course = ({ course }) => {
       </div>
       <div className="course-info-wrapper">
         <div className="course-name-title d-flex flex-between">
-          <h4 className="course-title">
-            {name}
-            {' '}
-            et la suiste
-          </h4>
+          <h4 className="course-title">{name}</h4>
           <h4 className="course-price">
             $
             {price}
@@ -33,10 +29,7 @@ const Course = ({ course }) => {
         <div className="course-author-duration d-flex flex-between">
           <div className="course-author-image d-flex">
             <div className="image-wrapper">
-              <img
-                src={avatar || defaultAvatar}
-                alt="author"
-              />
+              <img src={avatar || defaultAvatar} alt="author" />
             </div>
             <div className="course-author-name d-flex flex-column">
               <h4 className="author-name">
