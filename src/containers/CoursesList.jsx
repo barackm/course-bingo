@@ -1,9 +1,25 @@
 import React from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
 import Course from '../components/Course';
 
 const CoursesList = () => (
   <div className="course-list-main-container">
-    <Course />
+    <Swiper
+      spaceBetween={50}
+      slidesPerView={1}
+      onSlideChange={() => console.log('slide change')}
+      onSwiper={(swiper) => console.log(swiper)}
+      className="course-list-swiper"
+    >
+      <SwiperSlide>
+        <div>
+          <Course />
+        </div>
+      </SwiperSlide>
+      <SwiperSlide>
+        <Course />
+      </SwiperSlide>
+    </Swiper>
   </div>
 );
 

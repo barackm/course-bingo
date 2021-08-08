@@ -6,6 +6,7 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './components/App';
 import createStore from './store/createStore';
 
+import 'swiper/swiper-bundle.css';
 import './assets/css/main.css';
 import './index.css';
 import './assets/css/inputs.css';

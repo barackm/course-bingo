@@ -1,5 +1,10 @@
+.course-list-main-container {
+  padding-bottom: 2rem;
+}
+
 .navbar-main-container {
-  background-color: #fafafa;
+  background-color: var(--white);
+  padding-top: 0.7rem;
 }
 
 .navbar-btn {
@@ -23,10 +28,6 @@
   font-size: 1.5rem;
 }
 
-.course-list-main-container {
-  padding: 2rem 2.2rem;
-}
-
 .course-main-wrapper {
   border-radius: 0.5rem;
   overflow: hidden;
@@ -35,6 +36,8 @@
     rgba(0, 0, 0, 0.1) 0 16px 25px -5px,
     rgba(0, 0, 0, 0.04) 0 10px 10px -5px;
   color: var(--dark);
+  margin-left: 2.2rem;
+  margin-right: 2.2rem;
 }
 
 .course-info-wrapper {
@@ -44,7 +47,7 @@
 .course-image-wrapper {
   width: 100%;
   overflow: hidden;
-  height: 60vh;
+  height: 55vh;
 }
 
 .course-image-wrapper img {
@@ -96,4 +99,8 @@
 
 .counter-main-wraper {
   font-weight: bold;
+}
+
+.course-list-swiper {
+  padding: 2.2rem 0;
 }
