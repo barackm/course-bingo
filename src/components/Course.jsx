@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import defaultAvatar from '../assets/images/defaultAvatar.png';
+import defaultAvatar from './defaultAvatar.png';
 
 import Stars from './common/Stars';
 
