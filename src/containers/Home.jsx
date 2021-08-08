@@ -6,6 +6,7 @@ import { IconContext } from 'react-icons';
 import { GoSearch } from 'react-icons/go';
 import Navbar from '../components/common/Navbar';
 import CoursesList from './CoursesList';
+import Counter from '../components/common/Counter';
 
 const Home = (props) => {
   const { history, currentUser } = props;
@@ -24,6 +25,9 @@ const Home = (props) => {
         />
       </div>
       <CoursesList />
+      <div className="home-courses-counter-wrapper d-flex flex-center">
+        <Counter />
+      </div>
     </div>
   );
 };
