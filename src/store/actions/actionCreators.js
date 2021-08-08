@@ -9,6 +9,12 @@ import {
   LOAD_COURSES_FAILURE,
   API_CALL_BEGIN,
   TOGGLE_SIDEBAR,
+  ADD_FAVOURITE_SUCCESS,
+  ADD_FAVOURITE_FAILURE,
+  REMOVE_FAVOURITE_SUCCESS,
+  REMOVE_FAVOURITE_FAILURE,
+  LOAD_FAVOURITES_FAILURE,
+  LOAD_FAVOURITES_SUCCESS,
 } from './actionTypes';
 
 export const apiCallBegin = () => ({
@@ -55,4 +61,34 @@ export const loadCoursesFailure = (error) => ({
 
 export const toggleSidebar = () => ({
   type: TOGGLE_SIDEBAR,
+});
+
+export const addFavouriteSuccess = (data) => ({
+  type: ADD_FAVOURITE_SUCCESS,
+  payload: data,
+});
+
+export const addFavoriteFailure = (error) => ({
+  type: ADD_FAVOURITE_FAILURE,
+  payload: error,
+});
+
+export const removeFavouriteSuccess = (data) => ({
+  type: REMOVE_FAVOURITE_SUCCESS,
+  payload: data,
+});
+
+export const removeFavouriteFailure = (error) => ({
+  type: REMOVE_FAVOURITE_FAILURE,
+  payload: error,
+});
+
+export const loadFavouritesSuccess = (favourites) => ({
+  type: LOAD_FAVOURITES_SUCCESS,
+  payload: favourites,
+});
+
+export const loadFavouritesFailure = (error) => ({
+  type: LOAD_FAVOURITES_FAILURE,
+  payload: error,
 });

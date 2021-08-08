@@ -56,7 +56,7 @@ const CourseDetails = (props) => {
             />
           </div>
           <div className="course-details-content d-flex flex-column">
-            <div className="course-details-image-wrapper">
+            <div className="course-details-image-wrapper d-flex">
               <div className="course-details-ovelay" />
               <img
                 src={
@@ -66,8 +66,8 @@ const CourseDetails = (props) => {
                 alt=""
                 srcSet=""
               />
-              <div className="course-details-author d-flex">
-                <div className="course-details-author-names">
+              <div className="course-details-author d-flex flex-between">
+                <div className="course-details-author-names d-flex flex-center">
                   <div className="image-wrapper-course">
                     <img
                       src={avatar || defaultAvatar}
@@ -75,7 +75,7 @@ const CourseDetails = (props) => {
                       className="course-details-author"
                     />
                   </div>
-                  <div className="author-details-name">
+                  <div className="author-details-name d-flex flex-column flex-center">
                     <h3>
                       {firstName}
                       {lastName}
@@ -83,7 +83,7 @@ const CourseDetails = (props) => {
                     <Stars />
                   </div>
                 </div>
-                <div className="course-price-duration">
+                <div className="course-price-duration d-flex flex-column flex-center">
                   <h3>
                     $
                     {price}
