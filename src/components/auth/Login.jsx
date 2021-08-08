@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import * as Yup from 'yup';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -21,6 +21,10 @@ const validationSchema = Yup.object().shape({
 });
 
 const Login = (props) => {
+  useEffect(() => {
+    const { currentUser, history } = props;
+    return currentUser ? history.replace('/') : '';
+  });
   const handleSubmit = (values) => {
     const { loginUser } = props;
     loginUser(values);
@@ -60,13 +64,20 @@ const Login = (props) => {
   );
 };
 
+Login.defaultProps = {
+  currentUser: null,
+};
+
 Login.propTypes = {
   loginUser: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
+  currentUser: PropTypes.objectOf(PropTypes.any),
+  history: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 
 const mapStateToProps = (state) => ({
   loading: state.auth.loading,
+  currentUser: state.auth.currentUser,
 });
 const mapDispatchToProps = {
   loginUser: (user) => loginUserAsync(user),

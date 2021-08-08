@@ -1,3 +1,4 @@
+import storage from '../../utils/localStorage';
 import {
   AUTH_API_CALL_START,
   LOGIN_SUCCESS,
@@ -8,11 +9,11 @@ import {
 } from '../actions/actionTypes';
 
 const initialState = {
-  currentUser: null,
-  isAuthenticated: false,
+  currentUser: storage.getCurrentUser(),
+  isAuthenticated: storage.getCurrentUser() || false,
   loading: false,
   error: null,
-  isAdmin: false,
+  isAdmin: storage.getCurrentUser() ? storage.getCurrentUser().is_admin : false,
 };
 
 const auth = (state = initialState, action) => {

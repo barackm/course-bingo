@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -26,6 +26,10 @@ const validationSchema = Yup.object().shape({
 });
 
 const SignUp = (props) => {
+  useEffect(() => {
+    const { currentUser, history } = props;
+    return currentUser ? history.replace('/') : '';
+  });
   const handleSubmit = (values) => {
     const { signupUser } = props;
     const user = {
@@ -38,6 +42,7 @@ const SignUp = (props) => {
     signupUser(user);
   };
 
+  const { loading } = props;
   return (
     <div className="login-page-main-container signup d-flex flex-column">
       <div className="login-overlay" />
@@ -70,7 +75,7 @@ const SignUp = (props) => {
             name="passwordConfirmation"
             placeholder="Confirm Password"
           />
-          <SubmitBtn type="submit" label="Sign up" />
+          <SubmitBtn type="submit" label="Sign up" loading={loading} />
         </form>
       </AppForm>
       <div className="signup-details d-flex flex-center">
@@ -83,12 +88,25 @@ const SignUp = (props) => {
   );
 };
 
+SignUp.defaultProps = {
+  loading: false,
+  currentUser: null,
+};
+
 SignUp.propTypes = {
   signupUser: PropTypes.func.isRequired,
+  loading: PropTypes.bool,
+  currentUser: PropTypes.objectOf(PropTypes.any),
+  history: PropTypes.objectOf(PropTypes.any).isRequired,
 };
+
+const mapStateToProps = (state) => ({
+  loading: state.auth.loading,
+  currentUser: state.auth.currentUser,
+});
 
 const mapDispatchToProps = {
   signupUser: (user) => signupUserAsync(user),
 };
 
-export default connect(null, mapDispatchToProps)(SignUp);
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp);
