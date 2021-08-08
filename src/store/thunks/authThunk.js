@@ -1,6 +1,6 @@
-import axios from 'axios';
 import jwt from 'jsonwebtoken';
 import { toast } from 'react-toastify';
+import http from '../../services/http';
 
 import {
   authApiCallStart,
@@ -17,7 +17,7 @@ const endPoint = process.env.REACT_APP_API_END_POINT;
 export const signupUserAsync = (user) => async (dispatch) => {
   dispatch(authApiCallStart());
   try {
-    const response = await axios.post(`${endPoint}/users`, { user });
+    const response = await http.post(`${endPoint}/users`, { user });
     storage.setAuthToken(response.data);
     const loggedInUser = jwt.decode(response.data);
     dispatch(signupSuccess(loggedInUser));
@@ -31,7 +31,7 @@ export const signupUserAsync = (user) => async (dispatch) => {
 export const loginUserAsync = (user) => async (dispatch) => {
   dispatch(authApiCallStart());
   try {
-    const response = await axios.post(`${endPoint}/sessions`, user);
+    const response = await http.post(`${endPoint}/sessions`, user);
     storage.setAuthToken(response.data);
     const loggedInUser = jwt.decode(response.data.data);
     dispatch(loginSuccess(loggedInUser));
