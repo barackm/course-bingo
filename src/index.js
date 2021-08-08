@@ -13,6 +13,7 @@ import './assets/css/inputs.css';
 import './assets/css/auth.css';
 import './assets/css/home.css';
 import './assets/css/sidebar.css';
+import './assets/css/courseDetails.css';
 
 const store = createStore();
 
