@@ -7,7 +7,7 @@ import { GrClose } from 'react-icons/gr';
 
 import { toggleSidebar } from '../store/actions/actionCreators';
 
-import defaultAvatar from '../assets/images/defaultAvatar.png';
+import defaultAvatar from './defaultAvatar.png';
 
 const Sidebar = (props) => {
   const { currentUser, sidebar, toggleSidebar } = props;
