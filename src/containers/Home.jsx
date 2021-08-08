@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { IconContext } from 'react-icons';
 import { GoSearch } from 'react-icons/go';
 import Navbar from '../components/common/Navbar';
+import CoursesList from './CoursesList';
 
 const Home = (props) => {
   const { history, currentUser } = props;
@@ -22,6 +23,7 @@ const Home = (props) => {
           )}
         />
       </div>
+      <CoursesList />
     </div>
   );
 };

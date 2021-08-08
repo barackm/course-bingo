@@ -26,6 +26,7 @@
   --input-font-size: 1rem;
   --input-icon-size: 1.6rem;
   --success: #4caf50;
+  --gold: #ffd700;
 }
 
 body {
@@ -73,4 +74,13 @@ a {
 
 .flex-unit {
   flex: 1;
+}
+
+.star {
+  width: 0.8rem;
+  color: var(--gold);
+}
+
+.star.uncomplete {
+  color: var(--light-color);
 }
