@@ -1,0 +1,24 @@
+.navbar-main-container {
+  background-color: #fafafa;
+}
+
+.navbar-btn {
+  width: 6rem;
+  background-color: transparent;
+}
+
+.home-hamburger {
+  font-size: 2rem;
+  color: var(--dark);
+}
+
+.home-search-icon {
+  font-size: 1.5rem;
+  color: var(--dark);
+}
+
+.navbar-menu-title {
+  font-weight: 400;
+  text-transform: capitalize;
+  font-size: 1.7rem;
+}

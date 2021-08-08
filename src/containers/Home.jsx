@@ -2,12 +2,28 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
+import { IconContext } from 'react-icons';
+import { GoSearch } from 'react-icons/go';
+import Navbar from '../components/common/Navbar';
 
 const Home = (props) => {
   const { history, currentUser } = props;
   useEffect(() => (currentUser ? '' : history.replace('/login')));
 
-  return <h1>hello from the home page</h1>;
+  return (
+    <div className="home-main-container">
+      <div className="header">
+        <Navbar
+          title="courses"
+          rightIcon={(
+            <IconContext.Provider value={{ className: 'home-search-icon' }}>
+              <GoSearch />
+            </IconContext.Provider>
+          )}
+        />
+      </div>
+    </div>
+  );
 };
 
 Home.defaultProps = {

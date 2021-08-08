@@ -10,6 +10,7 @@ import './assets/css/main.css';
 import './index.css';
 import './assets/css/inputs.css';
 import './assets/css/auth.css';
+import './assets/css/home.css';
 
 const store = createStore();
 
