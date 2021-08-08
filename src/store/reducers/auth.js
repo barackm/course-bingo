@@ -10,7 +10,7 @@ import {
 
 const initialState = {
   currentUser: storage.getCurrentUser(),
-  isAuthenticated: storage.getCurrentUser() || false,
+  isAuthenticated: !!storage.getCurrentUser(),
   loading: false,
   error: null,
   isAdmin: storage.getCurrentUser() ? storage.getCurrentUser().is_admin : false,

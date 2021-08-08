@@ -7,11 +7,11 @@ import Stars from './common/Stars';
 
 const Course = ({ course }) => {
   const {
-    name, price, author, duration,
+    name, price, author, duration, id,
   } = course;
   const { first_name: firstName, last_name: lastName, avatar } = author;
   return (
-    <Link to="/" className="course-main-wrapper d-flex flex-column">
+    <Link to={`/courses/${id}`} className="course-main-wrapper d-flex flex-column">
       <div className="course-image-wrapper">
         <img
           src="https://images.unsplash.com/photo-1501556466850-7c9fa1fccb4c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=401&q=80"

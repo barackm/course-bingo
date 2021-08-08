@@ -11,6 +11,7 @@ import SignUp from './auth/SignUp';
 
 import 'react-toastify/dist/ReactToastify.css';
 import Logout from './auth/Logout';
+import CourseDetails from './CourseDetails';
 
 function App({ isAuthenticated }) {
   return (
@@ -18,6 +19,7 @@ function App({ isAuthenticated }) {
       <ToastContainer />
       {isAuthenticated && <Sidebar />}
       <Switch>
+        <Route path="/courses/:id" component={CourseDetails} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={SignUp} />
         <Route path="/logout" component={Logout} />
