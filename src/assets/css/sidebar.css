@@ -26,11 +26,14 @@
   width: 80%;
   overflow: hidden;
   background-color: var(--white);
-  height: 100%;
   padding-top: 4rem;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   position: relative;
   transform: translateX(-100vw);
   transition: var(--default-transition);
+  overflow-y: auto;
 }
 
 .sidebar-header {

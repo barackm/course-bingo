@@ -2,10 +2,6 @@
   position: relative;
 }
 
-.course-list-main-container {
-  padding-bottom: 2rem;
-}
-
 .navbar-main-container {
   background-color: var(--white);
   padding-top: 0.7rem;
@@ -51,7 +47,7 @@
 .course-image-wrapper {
   width: 100%;
   overflow: hidden;
-  height: 55vh;
+  height: 50vh;
 }
 
 .course-image-wrapper img {
