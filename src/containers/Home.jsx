@@ -17,7 +17,6 @@ const Home = (props) => {
     if (!currentUser) return history.replace('/login');
     return loadCourses();
   }, []);
-  console.log(courses);
   return (
     <div className="home-main-container">
       <div className="header">
@@ -30,7 +29,7 @@ const Home = (props) => {
           )}
         />
       </div>
-      <CoursesList />
+      <CoursesList courses={courses} />
       <div className="home-courses-counter-wrapper d-flex flex-center">
         <Counter />
       </div>

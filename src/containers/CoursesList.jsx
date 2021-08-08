@@ -1,8 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Swiper, SwiperSlide } from 'swiper/react';
+
 import Course from '../components/Course';
 
-const CoursesList = () => (
+const CoursesList = ({ courses }) => (
   <div className="course-list-main-container">
     <Swiper
       spaceBetween={20}
@@ -11,14 +13,16 @@ const CoursesList = () => (
       onSwiper={(swiper) => console.log(swiper)}
       className="course-list-swiper"
     >
-      <SwiperSlide>
-        <Course />
-      </SwiperSlide>
-      <SwiperSlide>
-        <Course />
-      </SwiperSlide>
+      {courses.map((course) => (
+        <SwiperSlide key={course.id}>
+          <Course course={course} />
+        </SwiperSlide>
+      ))}
     </Swiper>
   </div>
 );
 
+CoursesList.propTypes = {
+  courses: PropTypes.arrayOf(PropTypes.any).isRequired,
+};
 export default CoursesList;
