@@ -5,7 +5,14 @@ import {
   LOGIN_FAILURE,
   LOGIN_SUCCESS,
   LOGOUT_SUCCESS,
+  LOAD_COURSES_SUCCESS,
+  LOAD_COURSES_FAILURE,
+  API_CALL_BEGIN,
 } from './actionTypes';
+
+export const apiCallBegin = () => ({
+  type: API_CALL_BEGIN,
+});
 
 export const authApiCallStart = () => ({
   type: AUTH_API_CALL_START,
@@ -33,4 +40,14 @@ export const loginSuccess = (user) => ({
 
 export const authLogout = () => ({
   type: LOGOUT_SUCCESS,
+});
+
+export const loadCoursesSuccess = (courses) => ({
+  type: LOAD_COURSES_SUCCESS,
+  payload: courses,
+});
+
+export const loadCoursesFailure = (error) => ({
+  type: LOAD_COURSES_FAILURE,
+  payload: error,
 });

@@ -5,16 +5,14 @@ import Course from '../components/Course';
 const CoursesList = () => (
   <div className="course-list-main-container">
     <Swiper
-      spaceBetween={50}
+      spaceBetween={20}
       slidesPerView={1}
       onSlideChange={() => console.log('slide change')}
       onSwiper={(swiper) => console.log(swiper)}
       className="course-list-swiper"
     >
       <SwiperSlide>
-        <div>
-          <Course />
-        </div>
+        <Course />
       </SwiperSlide>
       <SwiperSlide>
         <Course />
