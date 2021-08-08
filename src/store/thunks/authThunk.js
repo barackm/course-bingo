@@ -12,12 +12,12 @@ import {
 import storage from '../../utils/localStorage';
 import http from '../../services/http';
 
-const endPoint = process.env.REACT_APP_API_END_POINT;
+const apiEndPoint = process.env.REACT_APP_API_END_POINT;
 
 export const signupUserAsync = (user) => async (dispatch) => {
   dispatch(authApiCallStart());
   try {
-    const response = await http.post(`${endPoint}/users`, { user });
+    const response = await http.post(`${apiEndPoint}/users`, { user });
     storage.setAuthToken(response.data);
     const loggedInUser = jwt.decode(response.data);
     dispatch(signupSuccess(loggedInUser));
@@ -31,7 +31,7 @@ export const signupUserAsync = (user) => async (dispatch) => {
 export const loginUserAsync = (user) => async (dispatch) => {
   dispatch(authApiCallStart());
   try {
-    const response = await http.post(`${endPoint}/sessions`, user);
+    const response = await http.post(`${apiEndPoint}/sessions`, user);
     storage.setAuthToken(response.data.data);
     const loggedInUser = jwt.decode(response.data.data);
     dispatch(loginSuccess(loggedInUser));
