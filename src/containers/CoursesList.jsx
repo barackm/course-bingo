@@ -9,8 +9,8 @@ const CoursesList = ({ courses }) => (
     <Swiper
       spaceBetween={20}
       slidesPerView={1}
-      onSlideChange={() => console.log('slide change')}
-      onSwiper={(swiper) => console.log(swiper)}
+      onSlideChange={() => {}}
+      onSwiper={() => {}}
       className="course-list-swiper"
     >
       {courses.map((course) => (
