@@ -9,11 +9,11 @@ import Navbar from '../components/common/Navbar';
 import CoursesList from './CoursesList';
 import Counter from '../components/common/Counter';
 import { loadCoursesAsync } from '../store/thunks/coursesThunk';
-import Sidebar from '../components/Sidebar';
+import { toggleSidebar } from '../store/actions/actionCreators';
 
 const Home = (props) => {
   const {
-    history, currentUser, courses, loadCourses,
+    history, currentUser, courses, loadCourses, toggleSidebar,
   } = props;
   useEffect(() => {
     if (!currentUser) return history.replace('/login');
@@ -21,7 +21,6 @@ const Home = (props) => {
   }, []);
   return (
     <div className="home-main-container">
-      <Sidebar currentUser={currentUser} />
       <div className="header">
         <Navbar
           title="courses"
@@ -30,6 +29,7 @@ const Home = (props) => {
               <GoSearch />
             </IconContext.Provider>
           )}
+          leftAction={toggleSidebar}
         />
       </div>
       <CoursesList courses={courses} />
@@ -49,6 +49,7 @@ Home.propTypes = {
   currentUser: PropTypes.objectOf(PropTypes.any),
   courses: PropTypes.arrayOf(PropTypes.any).isRequired,
   loadCourses: PropTypes.func.isRequired,
+  toggleSidebar: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -58,6 +59,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
   loadCourses: () => loadCoursesAsync(),
+  toggleSidebar: () => toggleSidebar(),
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

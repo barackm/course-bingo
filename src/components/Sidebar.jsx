@@ -5,10 +5,12 @@ import { connect } from 'react-redux';
 import { IconContext } from 'react-icons';
 import { GrClose } from 'react-icons/gr';
 
+import { toggleSidebar } from '../store/actions/actionCreators';
+
 import defaultAvatar from '../assets/images/defaultAvatar.png';
 
 const Sidebar = (props) => {
-  const { currentUser } = props;
+  const { currentUser, sidebar, toggleSidebar } = props;
   const {
     first_name: firstName,
     last_name: lastName,
@@ -16,10 +18,24 @@ const Sidebar = (props) => {
     avatar,
   } = currentUser;
   return (
-    <div className="sidebar-main-container">
-      <div className="sidebar-overlay" />
+    <div
+      className={
+        sidebar ? 'sidebar-main-container open' : 'sidebar-main-container'
+      }
+    >
+      <button
+        type="button"
+        className={sidebar ? 'sidebar-overlay shown' : 'sidebar-overlay'}
+        onClick={() => toggleSidebar()}
+      >
+        {}
+      </button>
       <div className="sidebar-content-wrapper">
-        <button type="button" className="close-sidebar-btn">
+        <button
+          type="button"
+          className="close-sidebar-btn"
+          onClick={() => toggleSidebar()}
+        >
           <IconContext.Provider value={{ className: 'sidebar-close-icon' }}>
             <GrClose />
           </IconContext.Provider>
@@ -39,22 +55,32 @@ const Sidebar = (props) => {
         <div className="sidebar-links-area d-flex flex-column">
           <ul className="sidebar-links-wrapper upper">
             <li>
-              <Link to="/" className="active">Dashboard</Link>
+              <Link to="/" className="active" onClick={() => toggleSidebar()}>
+                Dashboard
+              </Link>
             </li>
             <li>
-              <Link to="/">Profile</Link>
+              <Link to="/" onClick={() => toggleSidebar()}>
+                Profile
+              </Link>
             </li>
             <li>
-              <Link to="/">My Favourites</Link>
+              <Link to="/" onClick={() => toggleSidebar()}>
+                My Favourites
+              </Link>
             </li>
           </ul>
           <ul className="sidebar-links-wrapper">
             <hr className="links-separator" />
             <li>
-              <Link to="/">Help</Link>
+              <Link to="/" onClick={() => toggleSidebar()}>
+                Help
+              </Link>
             </li>
             <li>
-              <Link to="/">Logout</Link>
+              <Link to="/" onClick={() => toggleSidebar()}>
+                Logout
+              </Link>
             </li>
           </ul>
         </div>
@@ -65,10 +91,16 @@ const Sidebar = (props) => {
 
 Sidebar.propTypes = {
   currentUser: PropTypes.objectOf(PropTypes.any).isRequired,
+  toggleSidebar: PropTypes.func.isRequired,
+  sidebar: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   currentUser: state.auth.currentUser,
+  sidebar: state.sidebar,
 });
 
-export default connect(mapStateToProps)(Sidebar);
+const mapDispatchToProps = {
+  toggleSidebar: () => toggleSidebar(),
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Sidebar);

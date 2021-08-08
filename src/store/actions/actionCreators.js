@@ -53,6 +53,6 @@ export const loadCoursesFailure = (error) => ({
   payload: error,
 });
 
-export const togleSidebar = () => ({
+export const toggleSidebar = () => ({
   type: TOGGLE_SIDEBAR,
 });
