@@ -78,7 +78,7 @@ const Sidebar = (props) => {
               </Link>
             </li>
             <li>
-              <Link to="/" onClick={() => toggleSidebar()}>
+              <Link to="/logout" onClick={() => toggleSidebar()}>
                 Logout
               </Link>
             </li>
