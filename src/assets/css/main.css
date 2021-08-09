@@ -35,6 +35,7 @@ body {
   margin: 0;
   box-sizing: border-box;
   font-family: 'Quicksand', sans-serif;
+  overflow-x: hidden !important;
 }
 
 ul {
