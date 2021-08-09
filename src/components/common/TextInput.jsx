@@ -2,7 +2,9 @@ import React from 'react';
 import { useFormikContext } from 'formik';
 import PropTypes from 'prop-types';
 
-const TextInput = ({ name, type, placeholder }) => {
+const TextInput = ({
+  name, type, placeholder, onChange,
+}) => {
   const {
     handleChange, values, errors, touched, setFieldTouched,
   } = useFormikContext();
@@ -12,9 +14,9 @@ const TextInput = ({ name, type, placeholder }) => {
         placeholder={placeholder}
         name={name}
         type={type}
-        onChange={handleChange}
+        onChange={name === 'image' ? onChange : handleChange}
         onBlur={() => setFieldTouched(name)}
-        value={values[name]}
+        value={name === 'image' ? undefined : values[name]}
         className="main-text-input"
       />
       {errors[name] && touched[name] && (
@@ -27,12 +29,14 @@ const TextInput = ({ name, type, placeholder }) => {
 TextInput.defaultProps = {
   placeholder: '',
   type: 'text',
+  onChange: () => {},
 };
 
 TextInput.propTypes = {
   placeholder: PropTypes.string,
   type: PropTypes.string,
   name: PropTypes.string.isRequired,
+  onChange: PropTypes.func,
 };
 
 export default TextInput;

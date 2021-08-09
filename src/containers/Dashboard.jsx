@@ -4,7 +4,7 @@ import { IconContext } from 'react-icons';
 import { GoSearch } from 'react-icons/go';
 import PropTypes from 'prop-types';
 
-import { loadCoursesAsync } from '../store/thunks/coursesThunk';
+import { loadCoursesAsync, addCourseAsync } from '../store/thunks/coursesThunk';
 import { toggleSidebar } from '../store/actions/actionCreators';
 import Navbar from '../components/common/Navbar';
 import CoursesList from './CoursesList';
@@ -16,7 +16,7 @@ const Dashboard = (props) => {
   const [showCourseForm, setShowCourseForm] = useState(false);
 
   const {
-    courses, history, currentUser, isAdmin, toggleSidebar, loadCourses,
+    courses, history, currentUser, isAdmin, toggleSidebar, loadCourses, addCourse,
   } = props;
 
   useEffect(() => {
@@ -35,7 +35,7 @@ const Dashboard = (props) => {
   };
 
   const handleSubmitForm = (values) => {
-    console.log(values);
+    addCourse(values);
   };
 
   return (
@@ -97,7 +97,7 @@ const Dashboard = (props) => {
           </a>
           <CoursesList courses={courses} dashboard />
           <div className="d-flex flex-center counter-container">
-            <Counter />
+            <Counter max={courses.length} />
           </div>
         </div>
       ) : (
@@ -122,6 +122,7 @@ Dashboard.propTypes = {
   loadCourses: PropTypes.func.isRequired,
   isAdmin: PropTypes.bool.isRequired,
   toggleSidebar: PropTypes.func.isRequired,
+  addCourse: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -133,6 +134,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
   loadCourses: () => loadCoursesAsync(),
   toggleSidebar: () => toggleSidebar(),
+  addCourse: (values) => addCourseAsync(values),
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import * as Yup from 'yup';
 import PropTypes from 'prop-types';
 import { IconContext } from 'react-icons';
 import { GrClose } from 'react-icons/gr';
 
+import { toast } from 'react-toastify';
 import AppForm from './common/AppForm';
 import TextInput from './common/TextInput';
 import SubmitBtn from './common/SubmitBtn';
@@ -20,7 +21,6 @@ const validationSchema = Yup.object().shape({
     .max(250, 'Description must be between 10 and 250 characters')
     .label('Description'),
   price: Yup.number().required().label('Price'),
-  image: Yup.string().label('Image'),
   duration: Yup.number().required().label('Duration'),
   id: Yup.number(),
 });
@@ -28,8 +28,18 @@ const validationSchema = Yup.object().shape({
 const CourseForm = ({
   onSubmit, course, shown, onToggleCourseForm,
 }) => {
+  const [imageUpload, setImageUpload] = useState('');
+  const handleChangeImage = (e) => {
+    const file = e.target.files[0];
+    setImageUpload(file);
+  };
+  const handleSubmit = (values) => {
+    if (imageUpload.size > 1048576) return toast.warning('File size must be less than or equal to 1 MB');
+    onSubmit({ ...values, image: imageUpload });
+    return onToggleCourseForm();
+  };
   const {
-    name, description, price, image, duration, id,
+    name, description, price, duration, id,
   } = course || {};
   return (
     <div
@@ -39,7 +49,13 @@ const CourseForm = ({
           : 'course-form-main-container d-flex flex-center'
       }
     >
-      <button className="app-form-overylay" type="button" onClick={onToggleCourseForm}>{}</button>
+      <button
+        className="app-form-overylay"
+        type="button"
+        onClick={onToggleCourseForm}
+      >
+        {}
+      </button>
       <div className="app-form-main-content d-flex flex-column">
         <button
           type="button"
@@ -58,19 +74,23 @@ const CourseForm = ({
             name: name || '',
             description: description || '',
             price: price || '',
-            image: image || '',
             duration: duration || '',
             id: id || '',
           }}
           validationSchema={validationSchema}
-          onSubmit={onSubmit}
+          onSubmit={handleSubmit}
         >
           <form className="course-form flex-unit">
             <TextInput name="name" placeholder="Course name" />
             <TextInput name="description" placeholder="Course description" />
             <TextInput name="duration" placeholder="Course duration" />
             <TextInput name="price" placeholder="Course price" />
-            <TextInput name="image" type="file" placeholder="Course price" />
+            <TextInput
+              name="image"
+              type="file"
+              placeholder="Course price"
+              onChange={handleChangeImage}
+            />
             <div className="course-submit-btn-wrapper">
               <SubmitBtn label="Save course" />
             </div>

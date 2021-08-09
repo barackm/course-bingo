@@ -15,6 +15,8 @@ import {
   REMOVE_FAVOURITE_FAILURE,
   LOAD_FAVOURITES_FAILURE,
   LOAD_FAVOURITES_SUCCESS,
+  ADD_COURSE_SUCCESS,
+  ADD_COURSE_FAILURE,
 } from './actionTypes';
 
 export const apiCallBegin = () => ({
@@ -56,6 +58,16 @@ export const loadCoursesSuccess = (courses) => ({
 
 export const loadCoursesFailure = (error) => ({
   type: LOAD_COURSES_FAILURE,
+  payload: error,
+});
+
+export const addCourseSuccess = (course) => ({
+  type: ADD_COURSE_SUCCESS,
+  payload: course,
+});
+
+export const addCourseFailure = (error) => ({
+  type: ADD_COURSE_FAILURE,
   payload: error,
 });
 

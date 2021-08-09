@@ -85,3 +85,7 @@ a {
 .star.uncomplete {
   color: var(--light-color);
 }
+
+.toast-container-custom {
+  z-index: 99999999;
+}

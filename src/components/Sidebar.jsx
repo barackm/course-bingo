@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { IconContext } from 'react-icons';
 import { GrClose } from 'react-icons/gr';
@@ -11,6 +11,7 @@ import defaultAvatar from './defaultAvatar.png';
 
 const Sidebar = (props) => {
   const { currentUser, sidebar, toggleSidebar } = props;
+  const { pathname } = useLocation();
   const {
     first_name: firstName,
     last_name: lastName,
@@ -55,17 +56,22 @@ const Sidebar = (props) => {
         <div className="sidebar-links-area d-flex flex-column">
           <ul className="sidebar-links-wrapper upper">
             <li>
-              <Link to="/dashboard" className="active" onClick={() => toggleSidebar()}>
+              <Link to="/" className={pathname === '/' ? 'active' : ''} onClick={() => toggleSidebar()}>
+                Home
+              </Link>
+            </li>
+            <li>
+              <Link to="/dashboard" className={pathname === '/dashboard' ? 'active' : ''} onClick={() => toggleSidebar()}>
                 Dashboard
               </Link>
             </li>
             <li>
-              <Link to="/" onClick={() => toggleSidebar()}>
+              <Link to="/" className={pathname === '/profile' ? 'active' : ''} onClick={() => toggleSidebar()}>
                 Profile
               </Link>
             </li>
             <li>
-              <Link to="/" onClick={() => toggleSidebar()}>
+              <Link to="/" className={pathname === '/favourites' ? 'active' : ''} onClick={() => toggleSidebar()}>
                 My Favourites
               </Link>
             </li>
@@ -73,8 +79,8 @@ const Sidebar = (props) => {
           <ul className="sidebar-links-wrapper">
             <hr className="links-separator" />
             <li>
-              <Link to="/" onClick={() => toggleSidebar()}>
-                Help
+              <Link to="/" className={pathname === '/favourites' ? 'active' : ''} onClick={() => toggleSidebar()}>
+                About
               </Link>
             </li>
             <li>

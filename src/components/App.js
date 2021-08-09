@@ -17,7 +17,7 @@ import Dashboard from '../containers/Dashboard';
 function App({ isAuthenticated }) {
   return (
     <div className="App">
-      <ToastContainer />
+      <ToastContainer className="toast-container-custom" />
       {isAuthenticated && <Sidebar />}
       <Switch>
         <Route path="/courses/:id" component={CourseDetails} />

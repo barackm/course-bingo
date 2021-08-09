@@ -34,7 +34,7 @@ const Home = (props) => {
       </div>
       <CoursesList courses={courses} />
       <div className="home-courses-counter-wrapper d-flex flex-center">
-        <Counter />
+        <Counter max={courses.length} />
       </div>
     </div>
   );
