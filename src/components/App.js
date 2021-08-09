@@ -13,6 +13,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Logout from './auth/Logout';
 import CourseDetails from './CourseDetails';
 import Dashboard from '../containers/Dashboard';
+import Favourites from '../containers/Favourites';
 
 function App({ isAuthenticated }) {
   return (
@@ -22,6 +23,7 @@ function App({ isAuthenticated }) {
       <Switch>
         <Route path="/courses/:id" component={CourseDetails} />
         <Route path="/dashboard" component={Dashboard} />
+        <Route path="/favourites" component={Favourites} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={SignUp} />
         <Route path="/logout" component={Logout} />

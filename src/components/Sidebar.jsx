@@ -71,7 +71,7 @@ const Sidebar = (props) => {
               </Link>
             </li>
             <li>
-              <Link to="/" className={pathname === '/favourites' ? 'active' : ''} onClick={() => toggleSidebar()}>
+              <Link to="/favourites" className={pathname === '/favourites' ? 'active' : ''} onClick={() => toggleSidebar()}>
                 My Favourites
               </Link>
             </li>
