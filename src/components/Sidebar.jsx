@@ -55,7 +55,7 @@ const Sidebar = (props) => {
         <div className="sidebar-links-area d-flex flex-column">
           <ul className="sidebar-links-wrapper upper">
             <li>
-              <Link to="/" className="active" onClick={() => toggleSidebar()}>
+              <Link to="/dashboard" className="active" onClick={() => toggleSidebar()}>
                 Dashboard
               </Link>
             </li>

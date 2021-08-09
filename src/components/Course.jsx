@@ -1,23 +1,32 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import defaultAvatar from './defaultAvatar.png';
+import { IconContext } from 'react-icons';
+import { BsFillTrashFill } from 'react-icons/bs';
 
+import defaultAvatar from './defaultAvatar.png';
 import Stars from './common/Stars';
 
-const Course = ({ course }) => {
+const Course = ({ course, dashboard }) => {
   const {
     name, price, author, duration, id, image,
   } = course;
   const { first_name: firstName, last_name: lastName, avatar } = author;
   return (
-    <Link to={`/courses/${id}`} className="course-main-wrapper d-flex flex-column">
-      <div className="course-image-wrapper">
+    <div className="course-main-wrapper d-flex flex-column">
+      { dashboard && (
+      <button type="button" className="course-delete-btn">
+        <IconContext.Provider value={{ className: 'course-delete-trash-icon' }}>
+          <BsFillTrashFill />
+        </IconContext.Provider>
+      </button>
+      )}
+      <Link to={`/courses/${id}`} className="course-image-wrapper">
         <img
           src={image || 'https://images.unsplash.com/photo-1501556466850-7c9fa1fccb4c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=401&q=80'}
           alt="course"
         />
-      </div>
+      </Link>
       <div className="course-info-wrapper">
         <div className="course-name-title d-flex flex-between">
           <h4 className="course-title">{name}</h4>
@@ -49,12 +58,17 @@ const Course = ({ course }) => {
           </div>
         </div>
       </div>
-    </Link>
+    </div>
   );
+};
+
+Course.defaultProps = {
+  dashboard: true,
 };
 
 Course.propTypes = {
   course: PropTypes.objectOf(PropTypes.any).isRequired,
+  dashboard: PropTypes.bool,
 };
 
 export default Course;

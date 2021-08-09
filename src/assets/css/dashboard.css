@@ -1,0 +1,28 @@
+.dashboard-tabs-wrapper {
+  background-color: var(--white);
+}
+
+.tabs-wrapper {
+  background-color: var(--white);
+}
+
+.dashboard-tab {
+  padding: 0.8rem 0;
+  font-weight: bold;
+  color: var(--black);
+  position: relative;
+  border-bottom: 1px solid var(--light);
+}
+
+.dashboard-tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background-color: var(--primary);
+}
+
+.counter-container {
+  padding: 1rem 0;
+}

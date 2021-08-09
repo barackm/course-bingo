@@ -15,8 +15,14 @@ export const loadCoursesAsync = () => async (dispatch) => {
     const response = await http.get(`${apiEndPoint}/courses`);
     dispatch(loadCoursesSuccess(response.data));
   } catch (error) {
-    dispatch(loadCoursesFailure(error.response.data.message));
-    toast.error(error.response.data.message);
+    dispatch(
+      loadCoursesFailure(
+        error.response ? error.response.data.message : 'Error loading courses',
+      ),
+    );
+    toast.error(
+      error.response ? error.response.data.message : 'Error loading courses',
+    );
   }
 };
 

@@ -38,6 +38,19 @@
   color: var(--dark);
   margin-left: 2.2rem;
   margin-right: 2.2rem;
+  position: relative;
+}
+
+.course-delete-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 999;
+}
+
+.course-delete-trash-icon {
+  color: var(--primary);
+  font-size: 1.8rem;
 }
 
 .course-info-wrapper {
