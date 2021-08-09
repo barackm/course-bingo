@@ -11,13 +11,14 @@ import CoursesList from './CoursesList';
 import Counter from '../components/common/Counter';
 import CourseForm from '../components/CourseForm';
 import UsersList from './UsersList';
+import { loadUsersAsync } from '../store/thunks/usersThunk';
 
 const Dashboard = (props) => {
   const [currentTab, setCurrentTab] = useState('courses');
   const [showCourseForm, setShowCourseForm] = useState(false);
 
   const {
-    courses, history, currentUser, isAdmin, toggleSidebar, loadCourses, addCourse,
+    courses, history, currentUser, isAdmin, toggleSidebar, loadCourses, addCourse, loadUsers, users,
   } = props;
 
   useEffect(() => {
@@ -25,6 +26,7 @@ const Dashboard = (props) => {
     if (!isAdmin) history.replace('/');
     // console.log('hey there');
     loadCourses();
+    loadUsers();
   }, []);
 
   const handleTabClick = (tab) => {
@@ -103,7 +105,7 @@ const Dashboard = (props) => {
         </div>
       ) : (
         <div className="dashboard-users-list-wrapper">
-          <UsersList />
+          <UsersList users={users} />
         </div>
       )}
     </div>
@@ -122,18 +124,22 @@ Dashboard.propTypes = {
   isAdmin: PropTypes.bool.isRequired,
   toggleSidebar: PropTypes.func.isRequired,
   addCourse: PropTypes.func.isRequired,
+  loadUsers: PropTypes.func.isRequired,
+  users: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 const mapStateToProps = (state) => ({
   courses: state.courses.list,
   currentUser: state.auth.currentUser,
   isAdmin: state.auth.isAdmin,
+  users: state.users.list,
 });
 
 const mapDispatchToProps = {
   loadCourses: () => loadCoursesAsync(),
   toggleSidebar: () => toggleSidebar(),
   addCourse: (values) => addCourseAsync(values),
+  loadUsers: () => loadUsersAsync(),
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

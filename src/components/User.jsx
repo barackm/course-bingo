@@ -24,7 +24,7 @@ const User = ({ user }) => (
           {' '}
           {user.last_name}
         </h3>
-        <span className="joined-at">{moment(Date.now).calendar()}</span>
+        <span className="joined-at">{moment(user.created_at).calendar()}</span>
       </div>
     </Link>
     <a href="#f" className="dashboard-user-delete-btn">

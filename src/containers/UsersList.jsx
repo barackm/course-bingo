@@ -1,10 +1,17 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import User from '../components/User';
 
-const UsersList = () => (
+const UsersList = ({ users }) => (
   <div className="users-list-main-container">
-    <User user={{ first_name: 'barack', last_name: 'Mukelenga' }} />
+    {users.map((user) => (
+      <User user={user} key={user.id} />
+    ))}
   </div>
 );
+
+UsersList.propTypes = {
+  users: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+};
 
 export default UsersList;
