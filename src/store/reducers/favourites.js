@@ -4,6 +4,8 @@ import {
   API_CALL_BEGIN,
   LOAD_FAVOURITES_SUCCESS,
   LOAD_FAVOURITES_FAILURE,
+  REMOVE_FAVOURITE_SUCCESS,
+  REMOVE_FAVOURITE_FAILURE,
 } from '../actions/actionTypes';
 
 const initialState = {
@@ -26,6 +28,19 @@ const favourites = (state = initialState, action) => {
         error: null,
       };
     case ADD_FAVOURITE_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+    case REMOVE_FAVOURITE_SUCCESS:
+      return {
+        ...state,
+        list: state.list.filter((fav) => fav.id !== action.payload.id),
+        loading: false,
+        error: null,
+      };
+    case REMOVE_FAVOURITE_FAILURE:
       return {
         ...state,
         loading: false,

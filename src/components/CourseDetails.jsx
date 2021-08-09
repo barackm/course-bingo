@@ -10,11 +10,23 @@ import { FiChevronDown } from 'react-icons/fi';
 import Navbar from './common/Navbar';
 import defaultAvatar from './defaultAvatar.png';
 import Stars from './common/Stars';
-import { addFavouriteAsync } from '../store/thunks/favouritesThunk';
+import {
+  addFavouriteAsync,
+  loadFavouritesAsync,
+  removeFavouriteAsync,
+} from '../store/thunks/favouritesThunk';
 
 const CourseDetails = (props) => {
   const {
-    history, isAuthenticated, match, courses, addFavourite, currentUser,
+    history,
+    isAuthenticated,
+    match,
+    courses,
+    addFavourite,
+    currentUser,
+    favorites,
+    removeFavourite,
+    loadFavourites,
   } = props;
 
   const [course, setCourse] = useState(null);
@@ -23,6 +35,7 @@ const CourseDetails = (props) => {
     if (!isAuthenticated) {
       history.replace('/login');
     }
+    loadFavourites();
     const foundCourse = courses.find(
       (course) => course.id.toString() === match.params.id,
     );
@@ -35,12 +48,23 @@ const CourseDetails = (props) => {
     addFavourite({ user_id: currentUser.id, course_id: course.id });
   };
 
+  const handleRemoveFavourite = (e) => {
+    const isFavorite = course && favorites.find(
+      (fav) => fav.course.id === course.id,
+    );
+    e.preventDefault();
+    if (!isFavorite) return;
+    removeFavourite(isFavorite.id);
+  };
+
   const {
     image, author, price, duration,
   } = course || {};
 
+  const isFavorite = course && favorites.find(
+    (fav) => fav.course.id === course.id,
+  );
   const { avatar, first_name: firstName, last_name: lastName } = author || {};
-
   return (
     <>
       {course && (
@@ -120,9 +144,11 @@ const CourseDetails = (props) => {
               <a
                 href="#f"
                 className="course-details-favoutite-btn d-flex flex-center"
-                onClick={handleAddFavourite}
+                onClick={
+                  isFavorite ? handleRemoveFavourite : handleAddFavourite
+                }
               >
-                Add to favourites
+                {isFavorite ? 'Remove to favourites' : 'Add to favourites'}
               </a>
             </div>
           </div>
@@ -139,16 +165,22 @@ CourseDetails.propTypes = {
   courses: PropTypes.arrayOf(PropTypes.object).isRequired,
   addFavourite: PropTypes.func.isRequired,
   currentUser: PropTypes.objectOf(PropTypes.any).isRequired,
+  removeFavourite: PropTypes.func.isRequired,
+  favorites: PropTypes.arrayOf(PropTypes.object).isRequired,
+  loadFavourites: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
   currentUser: state.auth.currentUser,
   courses: state.courses.list,
+  favorites: state.favourites.list,
 });
 
 const mapDispatchToProps = {
   addFavourite: (favorite) => addFavouriteAsync(favorite),
+  removeFavourite: (id) => removeFavouriteAsync(id),
+  loadFavourites: () => loadFavouritesAsync(),
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CourseDetails);

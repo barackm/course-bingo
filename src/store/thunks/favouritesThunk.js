@@ -24,24 +24,23 @@ export const addFavouriteAsync = (favourite) => async (dispatch) => {
   }
 };
 
-export const removeFavouriteAsync = (favourite) => async (dispatch) => {
+export const removeFavouriteAsync = (id) => async (dispatch) => {
   dispatch(apiCallBegin());
   try {
-    const response = await http.delete(
-      `${apiEndPoint}/favourites/${favourite.id}`,
-    );
+    const response = await http.delete(`${apiEndPoint}/favourites/${id}`);
     dispatch(removeFavouriteSuccess(response.data));
     toast.success('Removed from favourites successfully.');
   } catch (error) {
-    dispatch(removeFavouriteFailure(error.response.message));
+    dispatch(removeFavouriteFailure('an error accured'));
     toast.error('Failed to remove from favourites.');
   }
 };
 
-export const loadFavouritesAsync = () => async (dispatch) => {
+export const loadFavouritesAsync = () => async (dispatch, getState) => {
   dispatch(apiCallBegin());
+  const user = getState().auth.currentUser;
   try {
-    const response = await http.get(`${apiEndPoint}/favourites`);
+    const response = await http.get(`${apiEndPoint}/favourites/${user.id}`);
     dispatch(loadFavouritesSuccess(response.data));
   } catch (error) {
     dispatch(loadFavouritesFailure(error.response.message));
