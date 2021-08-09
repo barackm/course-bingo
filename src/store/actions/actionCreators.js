@@ -17,6 +17,10 @@ import {
   LOAD_FAVOURITES_SUCCESS,
   ADD_COURSE_SUCCESS,
   ADD_COURSE_FAILURE,
+  LOAD_USERS_SUCCESS,
+  LOAD_USERS_FAILURE,
+  REMOVE_USER_SUCCESS,
+  REMOVE_USER_FAILURE,
 } from './actionTypes';
 
 export const apiCallBegin = () => ({
@@ -102,5 +106,25 @@ export const loadFavouritesSuccess = (favourites) => ({
 
 export const loadFavouritesFailure = (error) => ({
   type: LOAD_FAVOURITES_FAILURE,
+  payload: error,
+});
+
+export const loadUsersSuccess = (users) => ({
+  type: LOAD_USERS_SUCCESS,
+  payload: users,
+});
+
+export const loadUsersFailure = (error) => ({
+  type: LOAD_USERS_FAILURE,
+  payload: error,
+});
+
+export const removeUserSuccess = (user) => ({
+  type: REMOVE_USER_SUCCESS,
+  payload: user,
+});
+
+export const removeUserFailure = (error) => ({
+  type: REMOVE_USER_FAILURE,
   payload: error,
 });
