@@ -73,6 +73,7 @@ const Dashboard = (props) => {
       </div>
       {currentTab === 'courses' ? (
         <div className="dashboard-courses-list-wrapper">
+          <a href="#f" className="add-course-btn d-flex flex-center">Add a course</a>
           <CoursesList courses={courses} dashboard />
           <div className="d-flex flex-center counter-container">
             <Counter />

@@ -26,3 +26,12 @@
 .counter-container {
   padding: 1rem 0;
 }
+
+.add-course-btn {
+  background-color: var(--primary);
+  color: var(--white);
+  padding: 0.6rem 0;
+  margin-left: 2rem;
+  margin-right: 2rem;
+  border-radius: 0.4rem;
+}
