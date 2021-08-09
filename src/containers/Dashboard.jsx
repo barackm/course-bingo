@@ -10,6 +10,7 @@ import Navbar from '../components/common/Navbar';
 import CoursesList from './CoursesList';
 import Counter from '../components/common/Counter';
 import CourseForm from '../components/CourseForm';
+import UsersList from './UsersList';
 
 const Dashboard = (props) => {
   const [currentTab, setCurrentTab] = useState('courses');
@@ -102,9 +103,7 @@ const Dashboard = (props) => {
         </div>
       ) : (
         <div className="dashboard-users-list-wrapper">
-          {' '}
-          <h1>Users</h1>
-          {' '}
+          <UsersList />
         </div>
       )}
     </div>
