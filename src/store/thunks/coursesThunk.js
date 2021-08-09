@@ -44,14 +44,18 @@ export const addCourseAsync = (course) => async (dispatch, getState) => {
       formData.append('file', course.image);
       formData.append('image', course.image);
       formData.append('upload_preset', 'coursebingo');
-      fetch(cloudinaryEndPoint, { method: 'POST', body: formData, mode: 'cors' }).then((res) => {
-        const data = res.json();
-        newCourse.image = data.url;
-      }).catch((error) => toast.error(error.message || 'Error uploading image'));
+      const responseImage = await fetch(cloudinaryEndPoint, { method: 'POST', body: formData, mode: 'cors' });
+      const data = await responseImage.json();
+      newCourse.image = data.url;
+      const response = await http.post(`${apiEndPoint}/courses`, newCourse);
+      dispatch(addCourseSuccess(response.data));
+      toast.success('Course added');
+    } else {
+      newCourse.image = '';
+      const response = await http.post(`${apiEndPoint}/courses`, newCourse);
+      dispatch(addCourseSuccess(response.data));
+      toast.success('Course added');
     }
-    const response = await http.post(`${apiEndPoint}/courses`, newCourse);
-    dispatch(addCourseSuccess(response.data));
-    toast.success('Course added');
   } catch (error) {
     dispatch(
       loadCoursesFailure(

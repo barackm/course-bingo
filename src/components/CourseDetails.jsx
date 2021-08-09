@@ -10,6 +10,7 @@ import { FiChevronDown } from 'react-icons/fi';
 import Navbar from './common/Navbar';
 import defaultAvatar from './defaultAvatar.png';
 import Stars from './common/Stars';
+
 import {
   addFavouriteAsync,
   loadFavouritesAsync,
@@ -60,7 +61,6 @@ const CourseDetails = (props) => {
   const {
     image, author, price, duration,
   } = course || {};
-
   const isFavorite = course && favorites.find(
     (fav) => fav.course.id === course.id,
   );
