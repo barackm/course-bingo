@@ -9,9 +9,11 @@ import { toggleSidebar } from '../store/actions/actionCreators';
 import Navbar from '../components/common/Navbar';
 import CoursesList from './CoursesList';
 import Counter from '../components/common/Counter';
+import CourseForm from '../components/CourseForm';
 
 const Dashboard = (props) => {
   const [currentTab, setCurrentTab] = useState('courses');
+  const [showCourseForm, setShowCourseForm] = useState(false);
 
   const {
     courses, history, currentUser, isAdmin, toggleSidebar, loadCourses,
@@ -28,8 +30,21 @@ const Dashboard = (props) => {
     setCurrentTab(tab);
   };
 
+  const handleToggleCourseForm = () => {
+    setShowCourseForm(!showCourseForm);
+  };
+
+  const handleSubmitForm = (values) => {
+    console.log(values);
+  };
+
   return (
     <div className="dashboard-main-container">
+      <CourseForm
+        onSubmit={handleSubmitForm}
+        shown={showCourseForm}
+        onToggleCourseForm={handleToggleCourseForm}
+      />
       <div className="dashboard-header">
         <Navbar
           title="Administrator"
@@ -73,7 +88,13 @@ const Dashboard = (props) => {
       </div>
       {currentTab === 'courses' ? (
         <div className="dashboard-courses-list-wrapper">
-          <a href="#f" className="add-course-btn d-flex flex-center">Add a course</a>
+          <a
+            href="#f"
+            className="add-course-btn d-flex flex-center"
+            onClick={handleToggleCourseForm}
+          >
+            Add a course
+          </a>
           <CoursesList courses={courses} dashboard />
           <div className="d-flex flex-center counter-container">
             <Counter />

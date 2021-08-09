@@ -35,3 +35,98 @@
   margin-right: 2rem;
   border-radius: 0.4rem;
 }
+
+.course-form-main-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  z-index: 9999;
+  align-items: flex-start;
+  overflow-y: auto;
+  transition: var(--default-transition);
+  visibility: hidden;
+}
+
+.app-form-overylay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.466);
+  z-index: -1;
+  transition: var(--default-transition);
+  opacity: 0;
+}
+
+.app-form-main-content {
+  z-index: 99;
+  background-color: var(--white);
+  margin-left: 2rem;
+  margin-right: 2rem;
+  margin-top: 3rem;
+  flex: 1;
+  padding: 3rem 0;
+  border-radius: 0.3rem;
+  position: relative;
+  transition: var(--default-transition);
+  opacity: 0;
+}
+
+.course-submit-btn-wrapper {
+  margin: 1rem 0;
+  margin-top: 3rem;
+}
+
+.course-form {
+  width: 100%;
+  flex: 1;
+  padding: 0 2rem;
+}
+
+.course-form-header {
+  margin-bottom: 2rem;
+  padding: 0 2rem;
+}
+
+.course-form-header h1 {
+  margin: 0;
+  font-size: 1.6rem;
+}
+
+.main-text-input-container {
+  flex: 1;
+  margin-bottom: 0.6rem;
+}
+
+.course-form .input-error {
+  font-size: 0.9rem;
+  color: var(--primary);
+}
+
+.main-text-input {
+  border: 1px solid var(--light);
+  padding: 0.8rem;
+  outline: none;
+  border-radius: 0.2rem;
+  flex: 1;
+}
+
+.main-text-input:focus {
+  border-color: var(--primary);
+}
+
+.course-form-main-container.shown {
+  visibility: visible;
+}
+
+.course-form-main-container.shown .app-form-main-content {
+  opacity: 1;
+}
+
+.course-form-main-container.shown .app-form-overylay {
+  opacity: 1;
+}
