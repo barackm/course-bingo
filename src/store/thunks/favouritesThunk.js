@@ -20,7 +20,7 @@ export const addFavouriteAsync = (favourite) => async (dispatch) => {
     toast.success('Added to favourites successfully.');
   } catch (error) {
     dispatch(loadFavouritesFailure(error.response.message));
-    toast.error('Failed to add to favourites.');
+    toast.error(error.response.data.message || 'Failed to add to favourites.');
   }
 };
 

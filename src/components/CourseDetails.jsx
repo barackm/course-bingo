@@ -10,10 +10,11 @@ import { FiChevronDown } from 'react-icons/fi';
 import Navbar from './common/Navbar';
 import defaultAvatar from './defaultAvatar.png';
 import Stars from './common/Stars';
+import { addFavouriteAsync } from '../store/thunks/favouritesThunk';
 
 const CourseDetails = (props) => {
   const {
-    history, isAuthenticated, match, courses,
+    history, isAuthenticated, match, courses, addFavourite, currentUser,
   } = props;
 
   const [course, setCourse] = useState(null);
@@ -28,6 +29,11 @@ const CourseDetails = (props) => {
     if (!foundCourse) return history.replace('/');
     return setCourse(foundCourse);
   }, []);
+
+  const handleAddFavourite = (e) => {
+    e.preventDefault();
+    addFavourite({ user_id: currentUser.id, course_id: course.id });
+  };
 
   const {
     image, author, price, duration,
@@ -114,6 +120,7 @@ const CourseDetails = (props) => {
               <a
                 href="#f"
                 className="course-details-favoutite-btn d-flex flex-center"
+                onClick={handleAddFavourite}
               >
                 Add to favourites
               </a>
@@ -130,11 +137,18 @@ CourseDetails.propTypes = {
   isAuthenticated: PropTypes.bool.isRequired,
   match: PropTypes.objectOf(PropTypes.any).isRequired,
   courses: PropTypes.arrayOf(PropTypes.object).isRequired,
+  addFavourite: PropTypes.func.isRequired,
+  currentUser: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 
 const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
+  currentUser: state.auth.currentUser,
   courses: state.courses.list,
 });
 
-export default connect(mapStateToProps)(CourseDetails);
+const mapDispatchToProps = {
+  addFavourite: (favorite) => addFavouriteAsync(favorite),
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CourseDetails);

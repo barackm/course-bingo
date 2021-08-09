@@ -2,7 +2,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import storage from '../utils/localStorage';
 
-axios.defaults.headers.common.Authentication = storage.getAuthToken();
+axios.defaults.headers.common.Authorization = storage.getAuthToken();
 axios.interceptors.response.use(null, (error) => {
   const expectedError = error.response
     && error.response.status >= 400
