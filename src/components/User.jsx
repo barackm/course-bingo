@@ -10,7 +10,7 @@ import defaultAvatar from './defaultAvatar.png';
 
 const User = ({ user, currentUser }) => (
   <div className="user-item-main-container d-flex flex-center flex-between">
-    <Link to="/" className="dashboard-user-details d-flex">
+    <Link to={`/profile/${user.id}`} className="dashboard-user-details d-flex">
       <div className="dashboard-user-image-wrapper">
         <img
           className="dashboard-user-image"

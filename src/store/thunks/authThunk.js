@@ -8,11 +8,17 @@ import {
   loginSuccess,
   loginFailure,
   authLogout,
+  updateUserSuccess,
+  updateUserFailure,
 } from '../actions/actionCreators';
 import storage from '../../utils/localStorage';
 import http from '../../services/http';
 
 const apiEndPoint = process.env.REACT_APP_API_END_POINT;
+const cloudinaryEndPoint = process.env.REACT_APP_CLOUDINARY_ENDPOINT;
+// const cloudinaryEndPoint = 'https://api.cloudinary.com/v1_1/fidbagraphicscode/image/upload';
+const uploadPreset = process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET;
+// const uploadPreset = 'coursebingo';
 
 export const signupUserAsync = (user) => async (dispatch) => {
   dispatch(authApiCallStart());
@@ -45,4 +51,41 @@ export const loginUserAsync = (user) => async (dispatch) => {
 export const logoutUser = () => (dispatch) => {
   storage.removeAuthToken();
   dispatch(authLogout());
+};
+
+export const updateUserProfileAsync = (user) => async (dispatch) => {
+  dispatch(authApiCallStart());
+  try {
+    const newUser = {};
+    newUser.first_name = user.first_name;
+    newUser.last_name = user.last_name;
+    newUser.email = user.email;
+    newUser.password = user.password;
+    newUser.password_confirmation = user.password_confirmation;
+
+    if (user.avatar) {
+      const formData = new FormData();
+      formData.append('file', user.avatar);
+      formData.append('image', user.first_name);
+      formData.append('upload_preset', uploadPreset);
+      const responseImage = await fetch(cloudinaryEndPoint, { method: 'POST', body: formData, mode: 'cors' });
+      const data = await responseImage.json();
+      newUser.avatar = data.url;
+      if (!data.url) throw new Error('Something went wrong!');
+      const response = await http.put(`${apiEndPoint}/users/${user.id}`, { user: newUser });
+      storage.setAuthToken(response.data.data);
+      const loggedInUser = jwt.decode(response.data);
+      dispatch(updateUserSuccess(loggedInUser));
+      toast.success('Profile updated successfully!');
+    } else {
+      const response = await http.put(`${apiEndPoint}/users/${user.id}`, { user: newUser });
+      storage.setAuthToken(response.data);
+      const loggedInUser = jwt.decode(response.data);
+      dispatch(updateUserSuccess(loggedInUser));
+      toast.success('Profile updated successfully!');
+    }
+  } catch (error) {
+    dispatch(updateUserFailure(error.response ? error.response.data.message : 'Something went wrong!'));
+    toast.error(error.response ? error.response.data.message : 'Something went wrong!');
+  }
 };

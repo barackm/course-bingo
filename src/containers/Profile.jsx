@@ -12,6 +12,7 @@ import Navbar from '../components/common/Navbar';
 import defaultAvatar from '../components/defaultAvatar.png';
 import { toggleSidebar } from '../store/actions/actionCreators';
 import EditProfile from '../components/EditProfile';
+import { updateUserProfileAsync } from '../store/thunks/authThunk';
 
 const Profile = ({
   isAuthenticated,
@@ -22,6 +23,8 @@ const Profile = ({
   error,
   loading,
   toggleSidebar,
+  currentUser,
+  updateUserProfile,
 }) => {
   const [showEditForm, setShowEditForm] = useState(false);
   useEffect(() => {
@@ -37,7 +40,7 @@ const Profile = ({
   };
 
   const handleSubmit = (values) => {
-    console.log(values);
+    updateUserProfile(values);
   };
 
   return (
@@ -68,6 +71,7 @@ const Profile = ({
                 leftAction={toggleSidebar}
               />
               <div className="profile-user-image-wrapper d-flex flex-center">
+                {foundUser.id === currentUser.id && (
                 <a
                   href="#f"
                   className="user-profile-edit-icon-wrapper d-flex flex-center"
@@ -79,12 +83,13 @@ const Profile = ({
                     <RiPencilFill />
                   </IconContext.Provider>
                 </a>
+                )}
                 <div className="profile-image-container">
                   <img src={foundUser.avatar || defaultAvatar} alt="" />
                 </div>
               </div>
               <div className="profile-user-name-wrapper d-flex flex-center flex-column">
-                <h1 className="profile-user-names">
+                <h1 className="profile-user-names text-center d-flex">
                   {foundUser.first_name}
                   {' '}
                   {foundUser.last_name}
@@ -117,11 +122,13 @@ Profile.propTypes = {
   error: PropTypes.string,
   loading: PropTypes.bool.isRequired,
   toggleSidebar: PropTypes.func.isRequired,
+  currentUser: PropTypes.objectOf(PropTypes.any).isRequired,
+  updateUserProfile: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
-  currentUser: state.auth.user,
+  currentUser: state.auth.currentUser,
   foundUser: state.user.foundUser,
   loading: state.user.loading,
   error: state.user.error,
@@ -130,6 +137,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
   loadUser: (id) => loadUserAsync(id),
   toggleSidebar: () => toggleSidebar(),
+  updateUserProfile: (user) => updateUserProfileAsync(user),
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);

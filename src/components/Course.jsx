@@ -36,7 +36,7 @@ const Course = ({ course, dashboard }) => {
           </h4>
         </div>
         <div className="course-author-duration d-flex flex-between">
-          <div className="course-author-image d-flex">
+          <Link to={`/profile/${author.id}`} className="course-author-image d-flex">
             <div className="image-wrapper">
               <img src={avatar || defaultAvatar} alt="author" />
             </div>
@@ -50,7 +50,7 @@ const Course = ({ course, dashboard }) => {
                 <Stars />
               </div>
             </div>
-          </div>
+          </Link>
           <div className="course-duration d-flex flex-center text-center">
             {duration}
             {' '}

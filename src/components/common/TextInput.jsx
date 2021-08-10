@@ -14,9 +14,9 @@ const TextInput = ({
         placeholder={placeholder}
         name={name}
         type={type}
-        onChange={name === 'image' ? onChange : handleChange}
+        onChange={type === 'file' ? onChange : handleChange}
         onBlur={() => setFieldTouched(name)}
-        value={name === 'image' ? undefined : values[name]}
+        value={type === 'file' ? undefined : values[name]}
         className="main-text-input"
       />
       {errors[name] && touched[name] && (

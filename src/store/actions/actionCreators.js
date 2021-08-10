@@ -23,6 +23,8 @@ import {
   REMOVE_USER_FAILURE,
   LOAD_USER_FAILURE,
   LOAD_USER_SUCCESS,
+  UPDATE_USER_SUCCESS,
+  UPDATE_USER_FAILURE,
 } from './actionTypes';
 
 export const apiCallBegin = () => ({
@@ -138,5 +140,15 @@ export const loadUserSuccess = (user) => ({
 
 export const loadUserFailure = (error) => ({
   type: LOAD_USER_FAILURE,
+  payload: error,
+});
+
+export const updateUserSuccess = (user) => ({
+  type: UPDATE_USER_SUCCESS,
+  payload: user,
+});
+
+export const updateUserFailure = (error) => ({
+  type: UPDATE_USER_FAILURE,
   payload: error,
 });

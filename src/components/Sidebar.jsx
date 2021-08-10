@@ -96,8 +96,8 @@ const Sidebar = (props) => {
             <hr className="links-separator" />
             <li>
               <Link
-                to="/"
-                className={pathname === '/favourites' ? 'active' : ''}
+                to="/about"
+                className={pathname === '/about' ? 'active' : ''}
                 onClick={() => toggleSidebar()}
               >
                 About

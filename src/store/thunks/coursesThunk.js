@@ -9,8 +9,8 @@ import {
 } from '../actions/actionCreators';
 
 const apiEndPoint = process.env.REACT_APP_API_END_POINT;
-const cloudinaryEndPoint = process.env.REACT_APP_CLOUDINARY_ENDPOINT
-  || 'https://api.cloudinary.com/v1_1/fidbagraphicscode/image/upload';
+const cloudinaryEndPoint = process.env.REACT_APP_CLOUDINARY_ENDPOINT;
+const uploadPreset = process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET;
 
 export const loadCoursesAsync = () => async (dispatch) => {
   dispatch(apiCallBegin);
@@ -43,7 +43,7 @@ export const addCourseAsync = (course) => async (dispatch, getState) => {
       const formData = new FormData();
       formData.append('file', course.image);
       formData.append('image', course.image);
-      formData.append('upload_preset', 'coursebingo');
+      formData.append('upload_preset', uploadPreset);
       const responseImage = await fetch(cloudinaryEndPoint, { method: 'POST', body: formData, mode: 'cors' });
       const data = await responseImage.json();
       newCourse.image = data.url;

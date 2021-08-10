@@ -6,6 +6,8 @@ import {
   SIGNUP_SUCCESS,
   LOGIN_FAILURE,
   LOGOUT_SUCCESS,
+  UPDATE_USER_SUCCESS,
+  UPDATE_USER_FAILURE,
 } from '../actions/actionTypes';
 
 const initialState = {
@@ -68,6 +70,22 @@ const auth = (state = initialState, action) => {
         isAdmin: false,
         isAuthenticated: false,
         error: null,
+        loading: false,
+      };
+    case UPDATE_USER_SUCCESS:
+      return {
+        ...state,
+        currentUser: action.payload,
+        isAdmin: action.payload.is_admin,
+        isAuthenticated: true,
+        error: null,
+        loading: false,
+      };
+    case UPDATE_USER_FAILURE:
+      return {
+        ...state,
+        error: action.payload,
+        loading: false,
       };
     default:
       return state;

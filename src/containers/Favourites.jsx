@@ -8,6 +8,7 @@ import { toggleSidebar } from '../store/actions/actionCreators';
 import { loadFavouritesAsync } from '../store/thunks/favouritesThunk';
 import Navbar from '../components/common/Navbar';
 import CoursesList from './CoursesList';
+import Counter from '../components/common/Counter';
 
 const Favourites = (props) => {
   const {
@@ -34,6 +35,9 @@ const Favourites = (props) => {
         />
       </div>
       {favourites && <CoursesList courses={newFavourites} />}
+      <div className="counter-container d-flex flex-center">
+        <Counter max={favourites.length} />
+      </div>
     </div>
   );
 };
