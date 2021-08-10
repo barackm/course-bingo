@@ -56,22 +56,38 @@ const Sidebar = (props) => {
         <div className="sidebar-links-area d-flex flex-column">
           <ul className="sidebar-links-wrapper upper">
             <li>
-              <Link to="/" className={pathname === '/' ? 'active' : ''} onClick={() => toggleSidebar()}>
+              <Link
+                to="/"
+                className={pathname === '/' ? 'active' : ''}
+                onClick={() => toggleSidebar()}
+              >
                 Home
               </Link>
             </li>
             <li>
-              <Link to="/dashboard" className={pathname === '/dashboard' ? 'active' : ''} onClick={() => toggleSidebar()}>
+              <Link
+                to="/dashboard"
+                className={pathname === '/dashboard' ? 'active' : ''}
+                onClick={() => toggleSidebar()}
+              >
                 Dashboard
               </Link>
             </li>
             <li>
-              <Link to="/" className={pathname === '/profile' ? 'active' : ''} onClick={() => toggleSidebar()}>
+              <Link
+                to={`/profile/${currentUser.id}`}
+                className={pathname.includes('/profile') ? 'active' : ''}
+                onClick={() => toggleSidebar()}
+              >
                 Profile
               </Link>
             </li>
             <li>
-              <Link to="/favourites" className={pathname === '/favourites' ? 'active' : ''} onClick={() => toggleSidebar()}>
+              <Link
+                to="/favourites"
+                className={pathname === '/favourites' ? 'active' : ''}
+                onClick={() => toggleSidebar()}
+              >
                 My Favourites
               </Link>
             </li>
@@ -79,7 +95,11 @@ const Sidebar = (props) => {
           <ul className="sidebar-links-wrapper">
             <hr className="links-separator" />
             <li>
-              <Link to="/" className={pathname === '/favourites' ? 'active' : ''} onClick={() => toggleSidebar()}>
+              <Link
+                to="/"
+                className={pathname === '/favourites' ? 'active' : ''}
+                onClick={() => toggleSidebar()}
+              >
                 About
               </Link>
             </li>

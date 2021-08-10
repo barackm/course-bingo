@@ -1,4 +1,4 @@
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 
 import { ToastContainer } from 'react-toastify';
 import { connect } from 'react-redux';
@@ -14,6 +14,7 @@ import Logout from './auth/Logout';
 import CourseDetails from './CourseDetails';
 import Dashboard from '../containers/Dashboard';
 import Favourites from '../containers/Favourites';
+import Profile from '../containers/Profile';
 
 function App({ isAuthenticated }) {
   return (
@@ -22,12 +23,14 @@ function App({ isAuthenticated }) {
       {isAuthenticated && <Sidebar />}
       <Switch>
         <Route path="/courses/:id" component={CourseDetails} />
+        <Route path="/profile/:id" component={Profile} />
         <Route path="/dashboard" component={Dashboard} />
         <Route path="/favourites" component={Favourites} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={SignUp} />
         <Route path="/logout" component={Logout} />
         <Route exact path="/" component={Home} />
+        <Redirect to="/" />
       </Switch>
     </div>
   );
