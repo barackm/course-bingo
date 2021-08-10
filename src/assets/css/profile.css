@@ -1,0 +1,42 @@
+.profile-user-image-wrapper {
+  padding-top: 2rem;
+  position: relative;
+}
+
+.profile-user-image-wrapper .profile-image-container {
+  width: 8rem;
+  height: 8rem;
+  border-radius: 50%;
+  border: 2px solid var(--primary);
+  overflow: hidden;
+}
+
+.profile-user-image-wrapper .profile-image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-user-names {
+  text-transform: capitalize;
+}
+
+.profile-user-name-wrapper {
+  padding-left: 2rem;
+  padding-right: 2rem;
+  border-bottom: 1px solid var(--light);
+}
+
+.user-profile-edit-icon-wrapper {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+}
+
+.user-profile-icon-edit {
+  color: var(--primary);
+  font-size: 1.6rem;
+}

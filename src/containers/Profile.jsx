@@ -2,11 +2,14 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 import { IconContext } from 'react-icons';
 import { GoSearch } from 'react-icons/go';
+import { BsPencil } from 'react-icons/bs';
 
 import loadUserAsync from '../store/thunks/userThunk';
 import Navbar from '../components/common/Navbar';
+import defaultAvatar from '../components/defaultAvatar.png';
 import { toggleSidebar } from '../store/actions/actionCreators';
 
 const Profile = ({
@@ -48,6 +51,29 @@ const Profile = ({
                 )}
                 leftAction={toggleSidebar}
               />
+              <div className="profile-user-image-wrapper d-flex flex-center">
+                <a href="#f" className="user-profile-edit-icon-wrapper d-flex flex-center">
+                  <IconContext.Provider value={{ className: 'user-profile-icon-edit' }}>
+                    <BsPencil />
+                  </IconContext.Provider>
+                </a>
+                <div className="profile-image-container">
+                  <img src={foundUser.avatar || defaultAvatar} alt="" />
+                </div>
+              </div>
+              <div className="profile-user-name-wrapper d-flex flex-center flex-column">
+                <h1 className="profile-user-names">
+                  {foundUser.first_name}
+                  {' '}
+                  {foundUser.last_name}
+                </h1>
+                <span>{foundUser.email}</span>
+                <p>
+                  Joined at
+                  {' '}
+                  {moment(foundUser.created_at).format('ll')}
+                </p>
+              </div>
             </div>
           )}
         </div>

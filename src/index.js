@@ -16,6 +16,7 @@ import './assets/css/sidebar.css';
 import './assets/css/courseDetails.css';
 import './assets/css/dashboard.css';
 import './assets/css/users.css';
+import './assets/css/profile.css';
 
 const store = createStore();
 
