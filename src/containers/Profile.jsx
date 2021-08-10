@@ -1,16 +1,17 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import { IconContext } from 'react-icons';
 import { GoSearch } from 'react-icons/go';
-import { BsPencil } from 'react-icons/bs';
+import { RiPencilFill } from 'react-icons/ri';
 
 import loadUserAsync from '../store/thunks/userThunk';
 import Navbar from '../components/common/Navbar';
 import defaultAvatar from '../components/defaultAvatar.png';
 import { toggleSidebar } from '../store/actions/actionCreators';
+import EditProfile from '../components/EditProfile';
 
 const Profile = ({
   isAuthenticated,
@@ -22,6 +23,7 @@ const Profile = ({
   loading,
   toggleSidebar,
 }) => {
+  const [showEditForm, setShowEditForm] = useState(false);
   useEffect(() => {
     if (!isAuthenticated) {
       history.replace('/login');
@@ -29,6 +31,14 @@ const Profile = ({
     const { id } = match.params;
     loadUser(id);
   }, []);
+
+  const handleToggleEditForm = () => {
+    setShowEditForm(!showEditForm);
+  };
+
+  const handleSubmit = (values) => {
+    console.log(values);
+  };
 
   return (
     <>
@@ -40,6 +50,12 @@ const Profile = ({
             <h3>loading...</h3>
           ) : (
             <div className="user-profile-main-content">
+              <EditProfile
+                onToggleEditProfile={handleToggleEditForm}
+                user={foundUser}
+                shown={showEditForm}
+                onSubmit={handleSubmit}
+              />
               <Navbar
                 title="Profile"
                 rightIcon={(
@@ -52,9 +68,15 @@ const Profile = ({
                 leftAction={toggleSidebar}
               />
               <div className="profile-user-image-wrapper d-flex flex-center">
-                <a href="#f" className="user-profile-edit-icon-wrapper d-flex flex-center">
-                  <IconContext.Provider value={{ className: 'user-profile-icon-edit' }}>
-                    <BsPencil />
+                <a
+                  href="#f"
+                  className="user-profile-edit-icon-wrapper d-flex flex-center"
+                  onClick={handleToggleEditForm}
+                >
+                  <IconContext.Provider
+                    value={{ className: 'user-profile-icon-edit' }}
+                  >
+                    <RiPencilFill />
                   </IconContext.Provider>
                 </a>
                 <div className="profile-image-container">
@@ -70,7 +92,6 @@ const Profile = ({
                 <span>{foundUser.email}</span>
                 <p>
                   Joined at
-                  {' '}
                   {moment(foundUser.created_at).format('ll')}
                 </p>
               </div>
