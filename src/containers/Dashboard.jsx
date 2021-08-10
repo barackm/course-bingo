@@ -105,7 +105,7 @@ const Dashboard = (props) => {
         </div>
       ) : (
         <div className="dashboard-users-list-wrapper">
-          <UsersList users={users} />
+          <UsersList users={users} currentUser={currentUser} />
         </div>
       )}
     </div>
