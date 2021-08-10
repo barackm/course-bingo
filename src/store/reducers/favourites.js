@@ -18,7 +18,7 @@ const favourites = (state = initialState, action) => {
     case ADD_FAVOURITE_SUCCESS:
       return {
         ...state,
-        list: [...state.list, action.payload],
+        list: [action.payload, ...state.list],
         error: null,
       };
     case API_CALL_BEGIN:
