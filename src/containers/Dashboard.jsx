@@ -4,7 +4,11 @@ import { IconContext } from 'react-icons';
 import { GoSearch } from 'react-icons/go';
 import PropTypes from 'prop-types';
 
-import { loadCoursesAsync, addCourseAsync, removeCourseAsync } from '../store/thunks/coursesThunk';
+import {
+  loadCoursesAsync,
+  addCourseAsync,
+  removeCourseAsync,
+} from '../store/thunks/coursesThunk';
 import { toggleSidebar } from '../store/actions/actionCreators';
 import Navbar from '../components/common/Navbar';
 import CoursesList from './CoursesList';
@@ -12,14 +16,27 @@ import Counter from '../components/common/Counter';
 import CourseForm from '../components/CourseForm';
 import UsersList from './UsersList';
 import { loadUsersAsync, removeUserAsync } from '../store/thunks/usersThunk';
+import LoadingSpinner from '../components/common/LoadingSpinner';
 
 const Dashboard = (props) => {
   const [currentTab, setCurrentTab] = useState('courses');
   const [showCourseForm, setShowCourseForm] = useState(false);
+  const [currentIndex, setCurrentIndex] = React.useState(0);
 
   const {
-    courses, history, currentUser, isAdmin, toggleSidebar, loadCourses, addCourse, loadUsers, users,
-    removeUser, removeCourse,
+    courses,
+    history,
+    currentUser,
+    isAdmin,
+    toggleSidebar,
+    loadCourses,
+    addCourse,
+    loadUsers,
+    users,
+    removeUser,
+    removeCourse,
+    loadingCourses,
+    loadingUsers,
   } = props;
 
   useEffect(() => {
@@ -32,6 +49,10 @@ const Dashboard = (props) => {
 
   const handleTabClick = (tab) => {
     setCurrentTab(tab);
+  };
+
+  const handleIndexChange = (index) => {
+    setCurrentIndex(index);
   };
 
   const handleToggleCourseForm = () => {
@@ -99,14 +120,37 @@ const Dashboard = (props) => {
           >
             Add a course
           </a>
-          <CoursesList courses={courses} dashboard onRemoveCourse={removeCourse} />
-          <div className="d-flex flex-center counter-container">
-            <Counter max={courses.length} />
-          </div>
+          {loadingCourses ? (
+            <div className="loadin-spinner-wrapper d-flex flex-center">
+              <LoadingSpinner />
+            </div>
+          ) : (
+            <>
+              <CoursesList
+                courses={courses}
+                dashboard
+                onRemoveCourse={removeCourse}
+                onIndexChange={handleIndexChange}
+              />
+              <div className="d-flex flex-center counter-container">
+                <Counter max={courses.length} min={currentIndex} />
+              </div>
+            </>
+          )}
         </div>
       ) : (
         <div className="dashboard-users-list-wrapper">
-          <UsersList users={users} currentUser={currentUser} onRemoveUser={removeUser} />
+          {loadingUsers ? (
+            <div className="loadin-spinner-wrapper d-flex flex-center">
+              <LoadingSpinner />
+            </div>
+          ) : (
+            <UsersList
+              users={users}
+              currentUser={currentUser}
+              onRemoveUser={removeUser}
+            />
+          )}
         </div>
       )}
     </div>
@@ -129,6 +173,8 @@ Dashboard.propTypes = {
   users: PropTypes.arrayOf(PropTypes.object).isRequired,
   removeUser: PropTypes.func.isRequired,
   removeCourse: PropTypes.func.isRequired,
+  loadingCourses: PropTypes.bool.isRequired,
+  loadingUsers: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -137,6 +183,8 @@ const mapStateToProps = (state) => ({
   isAdmin: state.auth.isAdmin,
   users: state.users.list,
   removeUser: state.users.removeUser,
+  loadingCourses: state.courses.loading,
+  loadingUsers: state.users.loading,
 });
 
 const mapDispatchToProps = {

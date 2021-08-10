@@ -119,3 +119,16 @@
 .course-list-swiper {
   padding: 2.2rem 0;
 }
+
+.loadin-spinner-wrapper {
+  height: 100%;
+}
+
+.spinner-main-container {
+  min-height: 70vh;
+}
+
+.no-favourites {
+  width: 80%;
+  margin: 0 auto;
+}

@@ -10,15 +10,21 @@ import CoursesList from './CoursesList';
 import Counter from '../components/common/Counter';
 import { loadCoursesAsync } from '../store/thunks/coursesThunk';
 import { toggleSidebar } from '../store/actions/actionCreators';
+import LoadingSpinner from '../components/common/LoadingSpinner';
 
 const Home = (props) => {
+  const [currentIndex, setCurrentIndex] = React.useState(0);
   const {
-    history, currentUser, courses, loadCourses, toggleSidebar,
+    history, currentUser, courses, loadCourses, toggleSidebar, loading,
   } = props;
   useEffect(() => {
-    if (!currentUser) return history.replace('/login');
-    return loadCourses();
+    if (!currentUser) history.replace('/login');
+    loadCourses();
   }, []);
+  const handleIndexChange = (index) => {
+    setCurrentIndex(index);
+  };
+
   return (
     <div className="home-main-container">
       <div className="header">
@@ -32,10 +38,20 @@ const Home = (props) => {
           leftAction={toggleSidebar}
         />
       </div>
-      <CoursesList courses={courses} />
-      <div className="home-courses-counter-wrapper d-flex flex-center">
-        <Counter max={courses.length} />
-      </div>
+
+      {loading ? (
+        <div className="loadin-spinner-wrapper d-flex flex-center">
+          <LoadingSpinner />
+        </div>
+      ) : (
+        <>
+          <CoursesList courses={courses} onIndexChange={handleIndexChange} />
+          <div className="home-courses-counter-wrapper d-flex flex-center">
+            <Counter min={currentIndex + 1} max={courses.length} />
+          </div>
+          {' '}
+        </>
+      )}
     </div>
   );
 };
@@ -50,11 +66,13 @@ Home.propTypes = {
   courses: PropTypes.arrayOf(PropTypes.any).isRequired,
   loadCourses: PropTypes.func.isRequired,
   toggleSidebar: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   currentUser: state.auth.currentUser,
   courses: state.courses.list,
+  loading: state.courses.loading,
 });
 
 const mapDispatchToProps = {

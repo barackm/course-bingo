@@ -9,16 +9,27 @@ import { loadFavouritesAsync } from '../store/thunks/favouritesThunk';
 import Navbar from '../components/common/Navbar';
 import CoursesList from './CoursesList';
 import Counter from '../components/common/Counter';
+import LoadingSpinner from '../components/common/LoadingSpinner';
 
 const Favourites = (props) => {
+  const [currentIndex, setCurrentIndex] = React.useState(0);
   const {
-    favourites, history, currentUser, toggleSidebar, loadFavourites,
+    favourites,
+    history,
+    currentUser,
+    toggleSidebar,
+    loadFavourites,
+    loading,
   } = props;
 
   useEffect(() => {
     if (!currentUser) history.replace('/login');
     loadFavourites();
   }, []);
+
+  const handleIndexChange = (index) => {
+    setCurrentIndex(index);
+  };
 
   const newFavourites = favourites.map((f) => f.course);
   return (
@@ -34,10 +45,25 @@ const Favourites = (props) => {
           leftAction={toggleSidebar}
         />
       </div>
-      {favourites && <CoursesList courses={newFavourites} />}
-      <div className="counter-container d-flex flex-center">
-        <Counter max={favourites.length} />
-      </div>
+      {loading ? (
+        <div className="loadin-spinner-wrapper d-flex flex-center">
+          <LoadingSpinner />
+        </div>
+      ) : (
+        <>
+          <CoursesList
+            courses={newFavourites}
+            onIndexChange={handleIndexChange}
+          />
+          {newFavourites.length === 0 ? (
+            <h3 className="no-favourites text-center d-flex flex-center">Sorry, you don&apos;t have favourite courses yet.</h3>
+          ) : (
+            <div className="counter-container d-flex flex-center">
+              <Counter max={favourites.length} min={currentIndex} />
+            </div>
+          )}
+        </>
+      )}
     </div>
   );
 };
@@ -52,11 +78,13 @@ Favourites.propTypes = {
   currentUser: PropTypes.objectOf(PropTypes.any),
   loadFavourites: PropTypes.func.isRequired,
   toggleSidebar: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   favourites: state.favourites.list,
   currentUser: state.auth.currentUser,
+  loading: state.favourites.loading,
 });
 
 const mapDispatchToProps = {

@@ -9,9 +9,11 @@ import { RiPencilFill } from 'react-icons/ri';
 
 import loadUserAsync from '../store/thunks/userThunk';
 import Navbar from '../components/common/Navbar';
+import LoadingSpinner from '../components/common/LoadingSpinner';
 import defaultAvatar from '../components/defaultAvatar.png';
-import { toggleSidebar } from '../store/actions/actionCreators';
 import EditProfile from '../components/EditProfile';
+
+import { toggleSidebar } from '../store/actions/actionCreators';
 import { updateUserProfileAsync } from '../store/thunks/authThunk';
 
 const Profile = ({
@@ -50,7 +52,9 @@ const Profile = ({
       ) : (
         <div className="user-profile-page-main-container">
           {!foundUser || loading ? (
-            <h3>loading...</h3>
+            <div className="loadin-spinner-wrapper d-flex flex-center">
+              <LoadingSpinner />
+            </div>
           ) : (
             <div className="user-profile-main-content">
               <EditProfile

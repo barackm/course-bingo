@@ -15,7 +15,7 @@ const cloudinaryEndPoint = process.env.REACT_APP_CLOUDINARY_ENDPOINT;
 const uploadPreset = process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET;
 
 export const loadCoursesAsync = () => async (dispatch) => {
-  dispatch(apiCallBegin);
+  dispatch(apiCallBegin());
   try {
     const response = await http.get(`${apiEndPoint}/courses`);
     dispatch(loadCoursesSuccess(response.data));
@@ -32,7 +32,7 @@ export const loadCoursesAsync = () => async (dispatch) => {
 };
 
 export const addCourseAsync = (course) => async (dispatch, getState) => {
-  dispatch(apiCallBegin);
+  dispatch(apiCallBegin());
   try {
     const user = getState().auth.currentUser;
     const newCourse = {};
