@@ -8,7 +8,7 @@ import { BsFillTrashFill } from 'react-icons/bs';
 
 import defaultAvatar from './defaultAvatar.png';
 
-const User = ({ user, currentUser }) => (
+const User = ({ user, currentUser, onRemoveUser }) => (
   <div className="user-item-main-container d-flex flex-center flex-between">
     <Link to={`/profile/${user.id}`} className="dashboard-user-details d-flex">
       <div className="dashboard-user-image-wrapper">
@@ -32,7 +32,7 @@ const User = ({ user, currentUser }) => (
       </div>
     </Link>
     {!user.is_admin || user.id !== currentUser.id ? (
-      <a href="#f" className="dashboard-user-delete-btn">
+      <a href="#f" className="dashboard-user-delete-btn" onClick={() => onRemoveUser(user.id)}>
         <IconContext.Provider
           value={{ className: 'dashboard-delete-trash-icon' }}
         >
@@ -46,6 +46,7 @@ const User = ({ user, currentUser }) => (
 User.propTypes = {
   user: PropTypes.objectOf(PropTypes.any).isRequired,
   currentUser: PropTypes.objectOf(PropTypes.any).isRequired,
+  onRemoveUser: PropTypes.func.isRequired,
 };
 
 export default User;

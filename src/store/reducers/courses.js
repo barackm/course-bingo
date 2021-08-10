@@ -4,6 +4,8 @@ import {
   LOAD_COURSES_SUCCESS,
   ADD_COURSE_SUCCESS,
   ADD_COURSE_FAILURE,
+  REMOVE_COURSE_SUCCESS,
+  REMOVE_COURSE_FAILURE,
 } from '../actions/actionTypes';
 
 const initialState = {
@@ -40,6 +42,19 @@ const courses = (state = initialState, action) => {
         loading: false,
       };
     case ADD_COURSE_FAILURE:
+      return {
+        ...state,
+        error: action.payload,
+        loading: false,
+      };
+    case REMOVE_COURSE_SUCCESS:
+      return {
+        ...state,
+        list: state.list.filter((course) => course.id !== action.payload.id),
+        loading: false,
+        error: null,
+      };
+    case REMOVE_COURSE_FAILURE:
       return {
         ...state,
         error: action.payload,

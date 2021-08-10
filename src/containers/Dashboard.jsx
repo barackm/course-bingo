@@ -4,14 +4,14 @@ import { IconContext } from 'react-icons';
 import { GoSearch } from 'react-icons/go';
 import PropTypes from 'prop-types';
 
-import { loadCoursesAsync, addCourseAsync } from '../store/thunks/coursesThunk';
+import { loadCoursesAsync, addCourseAsync, removeCourseAsync } from '../store/thunks/coursesThunk';
 import { toggleSidebar } from '../store/actions/actionCreators';
 import Navbar from '../components/common/Navbar';
 import CoursesList from './CoursesList';
 import Counter from '../components/common/Counter';
 import CourseForm from '../components/CourseForm';
 import UsersList from './UsersList';
-import { loadUsersAsync } from '../store/thunks/usersThunk';
+import { loadUsersAsync, removeUserAsync } from '../store/thunks/usersThunk';
 
 const Dashboard = (props) => {
   const [currentTab, setCurrentTab] = useState('courses');
@@ -19,6 +19,7 @@ const Dashboard = (props) => {
 
   const {
     courses, history, currentUser, isAdmin, toggleSidebar, loadCourses, addCourse, loadUsers, users,
+    removeUser, removeCourse,
   } = props;
 
   useEffect(() => {
@@ -98,14 +99,14 @@ const Dashboard = (props) => {
           >
             Add a course
           </a>
-          <CoursesList courses={courses} dashboard />
+          <CoursesList courses={courses} dashboard onRemoveCourse={removeCourse} />
           <div className="d-flex flex-center counter-container">
             <Counter max={courses.length} />
           </div>
         </div>
       ) : (
         <div className="dashboard-users-list-wrapper">
-          <UsersList users={users} currentUser={currentUser} />
+          <UsersList users={users} currentUser={currentUser} onRemoveUser={removeUser} />
         </div>
       )}
     </div>
@@ -126,6 +127,8 @@ Dashboard.propTypes = {
   addCourse: PropTypes.func.isRequired,
   loadUsers: PropTypes.func.isRequired,
   users: PropTypes.arrayOf(PropTypes.object).isRequired,
+  removeUser: PropTypes.func.isRequired,
+  removeCourse: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -133,6 +136,7 @@ const mapStateToProps = (state) => ({
   currentUser: state.auth.currentUser,
   isAdmin: state.auth.isAdmin,
   users: state.users.list,
+  removeUser: state.users.removeUser,
 });
 
 const mapDispatchToProps = {
@@ -140,6 +144,8 @@ const mapDispatchToProps = {
   toggleSidebar: () => toggleSidebar(),
   addCourse: (values) => addCourseAsync(values),
   loadUsers: () => loadUsersAsync(),
+  removeUser: (userId) => removeUserAsync(userId),
+  removeCourse: (courseId) => removeCourseAsync(courseId),
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

@@ -6,6 +6,8 @@ import {
   apiCallBegin,
   loadCoursesFailure,
   loadCoursesSuccess,
+  removeCourseFailure,
+  removeCourseSuccess,
 } from '../actions/actionCreators';
 
 const apiEndPoint = process.env.REACT_APP_API_END_POINT;
@@ -44,7 +46,11 @@ export const addCourseAsync = (course) => async (dispatch, getState) => {
       formData.append('file', course.image);
       formData.append('image', course.image);
       formData.append('upload_preset', uploadPreset);
-      const responseImage = await fetch(cloudinaryEndPoint, { method: 'POST', body: formData, mode: 'cors' });
+      const responseImage = await fetch(cloudinaryEndPoint, {
+        method: 'POST',
+        body: formData,
+        mode: 'cors',
+      });
       const data = await responseImage.json();
       newCourse.image = data.url;
       const response = await http.post(`${apiEndPoint}/courses`, newCourse);
@@ -64,6 +70,24 @@ export const addCourseAsync = (course) => async (dispatch, getState) => {
     );
     toast.error(
       error.response ? error.response.data.message : 'Error adding course',
+    );
+  }
+};
+
+export const removeCourseAsync = (courseId) => async (dispatch) => {
+  dispatch(apiCallBegin());
+  try {
+    const response = await http.delete(`${apiEndPoint}/courses/${courseId}`);
+    dispatch(removeCourseSuccess(response.data));
+    toast.success('Course removed');
+  } catch (error) {
+    dispatch(
+      removeCourseFailure(
+        error.response ? error.response.data.message : 'Error removing course',
+      ),
+    );
+    toast.error(
+      error.response ? error.response.data.message : 'Error removing course',
     );
   }
 };

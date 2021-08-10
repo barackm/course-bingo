@@ -7,7 +7,7 @@ import { BsFillTrashFill } from 'react-icons/bs';
 import defaultAvatar from './defaultAvatar.png';
 import Stars from './common/Stars';
 
-const Course = ({ course, dashboard }) => {
+const Course = ({ course, dashboard, onRemoveCourse }) => {
   const {
     name, price, author, duration, id, image,
   } = course;
@@ -15,7 +15,7 @@ const Course = ({ course, dashboard }) => {
   return (
     <div className="course-main-wrapper d-flex flex-column">
       { dashboard && (
-      <button type="button" className="course-delete-btn">
+      <button type="button" className="course-delete-btn" onClick={() => onRemoveCourse(course.id)}>
         <IconContext.Provider value={{ className: 'course-delete-trash-icon' }}>
           <BsFillTrashFill />
         </IconContext.Provider>
@@ -64,11 +64,13 @@ const Course = ({ course, dashboard }) => {
 
 Course.defaultProps = {
   dashboard: true,
+  onRemoveCourse: () => {},
 };
 
 Course.propTypes = {
   course: PropTypes.objectOf(PropTypes.any).isRequired,
   dashboard: PropTypes.bool,
+  onRemoveCourse: PropTypes.func,
 };
 
 export default Course;

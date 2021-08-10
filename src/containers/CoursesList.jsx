@@ -4,7 +4,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 
 import Course from '../components/Course';
 
-const CoursesList = ({ courses, dashboard }) => (
+const CoursesList = ({ courses, dashboard, onRemoveCourse }) => (
   <div className="course-list-main-container">
     <Swiper
       spaceBetween={20}
@@ -15,7 +15,7 @@ const CoursesList = ({ courses, dashboard }) => (
     >
       {courses.map((course) => (
         <SwiperSlide key={course.id}>
-          <Course course={course} dashboard={dashboard} />
+          <Course course={course} dashboard={dashboard} onRemoveCourse={onRemoveCourse} />
         </SwiperSlide>
       ))}
     </Swiper>
@@ -24,10 +24,12 @@ const CoursesList = ({ courses, dashboard }) => (
 
 CoursesList.defaultProps = {
   dashboard: false,
+  onRemoveCourse: () => {},
 };
 
 CoursesList.propTypes = {
   courses: PropTypes.arrayOf(PropTypes.any).isRequired,
   dashboard: PropTypes.bool,
+  onRemoveCourse: PropTypes.func,
 };
 export default CoursesList;

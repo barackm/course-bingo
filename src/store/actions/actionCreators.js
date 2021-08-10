@@ -25,6 +25,8 @@ import {
   LOAD_USER_SUCCESS,
   UPDATE_USER_SUCCESS,
   UPDATE_USER_FAILURE,
+  REMOVE_COURSE_SUCCESS,
+  REMOVE_COURSE_FAILURE,
 } from './actionTypes';
 
 export const apiCallBegin = () => ({
@@ -76,6 +78,16 @@ export const addCourseSuccess = (course) => ({
 
 export const addCourseFailure = (error) => ({
   type: ADD_COURSE_FAILURE,
+  payload: error,
+});
+
+export const removeCourseSuccess = (course) => ({
+  type: REMOVE_COURSE_SUCCESS,
+  payload: course,
+});
+
+export const removeCourseFailure = (error) => ({
+  type: REMOVE_COURSE_FAILURE,
   payload: error,
 });
 
