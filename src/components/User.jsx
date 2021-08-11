@@ -31,7 +31,7 @@ const User = ({ user, currentUser, onRemoveUser }) => (
         </span>
       </div>
     </Link>
-    {!user.is_admin || user.id !== currentUser.id ? (
+    {!user.is_admin && user.id !== currentUser.id ? (
       <a href="#f" className="dashboard-user-delete-btn" onClick={() => onRemoveUser(user.id)}>
         <IconContext.Provider
           value={{ className: 'dashboard-delete-trash-icon' }}
