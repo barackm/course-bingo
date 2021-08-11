@@ -1,0 +1,96 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Home should render correctly 1`] = `
+<div
+  className="home-main-container"
+>
+  <div
+    className="header"
+  >
+    <div
+      className="navbar-main-container d-flex flex-between"
+    >
+      <button
+        className="navbar-btn left d-flex flex-center"
+        onClick={[Function]}
+        type="button"
+      >
+        <svg
+          className="home-hamburger"
+          fill="currentColor"
+          height="1em"
+          stroke="currentColor"
+          strokeWidth="0"
+          style={
+            Object {
+              "color": undefined,
+            }
+          }
+          viewBox="0 0 24 24"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"
+          />
+        </svg>
+      </button>
+      <h1
+        className="navbar-menu-title"
+      >
+        courses
+      </h1>
+      <button
+        className="navbar-btn right d-flex flex-center"
+        onClick={[Function]}
+        type="button"
+      >
+        <svg
+          className="home-search-icon"
+          fill="currentColor"
+          height="1em"
+          stroke="currentColor"
+          strokeWidth="0"
+          style={
+            Object {
+              "color": undefined,
+            }
+          }
+          viewBox="0 0 16 16"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M15.7 13.3l-3.81-3.83A5.93 5.93 0 0 0 13 6c0-3.31-2.69-6-6-6S1 2.69 1 6s2.69 6 6 6c1.3 0 2.48-.41 3.47-1.11l3.83 3.81c.19.2.45.3.7.3.25 0 .52-.09.7-.3a.996.996 0 0 0 0-1.41v.01zM7 10.7c-2.59 0-4.7-2.11-4.7-4.7 0-2.59 2.11-4.7 4.7-4.7 2.59 0 4.7 2.11 4.7 4.7 0 2.59-2.11 4.7-4.7 4.7z"
+            fillRule="evenodd"
+          />
+        </svg>
+      </button>
+    </div>
+  </div>
+  <div
+    className="course-list-main-container"
+  >
+    <div
+      className="swiper-container course-list-swiper"
+    >
+      <div
+        className="swiper-wrapper"
+      />
+    </div>
+  </div>
+  <div
+    className="home-courses-counter-wrapper d-flex flex-center"
+  >
+    <div
+      className="counter-main-wraper"
+    >
+      1
+       
+      /
+      0
+    </div>
+  </div>
+   
+</div>
+`;
