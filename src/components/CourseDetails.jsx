@@ -108,6 +108,7 @@ const CourseDetails = (props) => {
                   <div className="author-details-name d-flex flex-column flex-center">
                     <h3>
                       {firstName}
+                      {' '}
                       {lastName}
                     </h3>
                     <Stars />

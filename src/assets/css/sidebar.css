@@ -7,6 +7,7 @@
   z-index: 1000;
   visibility: hidden;
   transition: var(--default-transition);
+  overflow-y: auto;
 }
 
 .sidebar-overlay {
