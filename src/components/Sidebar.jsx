@@ -17,6 +17,7 @@ const Sidebar = (props) => {
     last_name: lastName,
     email,
     avatar,
+    id,
   } = currentUser;
   return (
     <div
@@ -42,9 +43,11 @@ const Sidebar = (props) => {
           </IconContext.Provider>
         </button>
         <div className="sidebar-header">
-          <div className="user-image-wrapper">
-            <img src={avatar || defaultAvatar} alt="profile" />
-          </div>
+          <Link to={`/profile/${id}`} onClick={() => toggleSidebar()}>
+            <div className="user-image-wrapper">
+              <img src={avatar || defaultAvatar} alt="profile" />
+            </div>
+          </Link>
           <h1 className="user-names">
             {firstName}
             {' '}

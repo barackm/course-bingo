@@ -37,8 +37,10 @@ const Course = ({ course, dashboard, onRemoveCourse }) => {
         </div>
         <div className="course-author-duration d-flex flex-between">
           <Link to={`/profile/${author.id}`} className="course-author-image d-flex">
-            <div className="image-wrapper">
-              <img src={avatar || defaultAvatar} alt="author" />
+            <div>
+              <div className="image-wrapper">
+                <img src={avatar || defaultAvatar} alt="author" />
+              </div>
             </div>
             <div className="course-author-name d-flex flex-column">
               <h4 className="author-name">
