@@ -6,6 +6,7 @@ import { IconContext } from 'react-icons';
 import { GoSearch } from 'react-icons/go';
 import { BiArrowBack } from 'react-icons/bi';
 import { FiChevronDown } from 'react-icons/fi';
+import { Link } from 'react-router-dom';
 
 import Navbar from './common/Navbar';
 import defaultAvatar from './defaultAvatar.png';
@@ -64,7 +65,9 @@ const CourseDetails = (props) => {
   const isFavorite = course && favorites.find(
     (fav) => fav.course.id === course.id,
   );
-  const { avatar, first_name: firstName, last_name: lastName } = author || {};
+  const {
+    avatar, first_name: firstName, last_name: lastName, id,
+  } = author || {};
   return (
     <>
       {course && (
@@ -97,7 +100,7 @@ const CourseDetails = (props) => {
                 srcSet=""
               />
               <div className="course-details-author d-flex flex-between">
-                <div className="course-details-author-names d-flex flex-center">
+                <Link to={`/profile/${id}`} className="course-details-author-names d-flex flex-center">
                   <div className="image-wrapper-course">
                     <img
                       src={avatar || defaultAvatar}
@@ -113,7 +116,7 @@ const CourseDetails = (props) => {
                     </h3>
                     <Stars />
                   </div>
-                </div>
+                </Link>
                 <div className="course-price-duration d-flex flex-column flex-center">
                   <h3>
                     $
