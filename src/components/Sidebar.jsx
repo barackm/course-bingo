@@ -64,6 +64,7 @@ const Sidebar = (props) => {
                 Home
               </Link>
             </li>
+            {currentUser.is_admin && (
             <li>
               <Link
                 to="/dashboard"
@@ -73,6 +74,7 @@ const Sidebar = (props) => {
                 Dashboard
               </Link>
             </li>
+            )}
             <li>
               <Link
                 to={`/profile/${currentUser.id}`}
