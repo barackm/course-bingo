@@ -99,7 +99,7 @@ const EditProfile = ({
               onChange={handleChangeImage}
             />
             <div className="course-submit-btn-wrapper">
-              <SubmitBtn label="Save course" />
+              <SubmitBtn label="Save" />
             </div>
           </form>
         </AppForm>

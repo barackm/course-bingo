@@ -83,12 +83,12 @@ const CourseForm = ({
           <form className="course-form flex-unit">
             <TextInput name="name" placeholder="Course name" />
             <TextInput name="description" placeholder="Course description" />
-            <TextInput name="duration" placeholder="Course duration" />
-            <TextInput name="price" placeholder="Course price" />
+            <TextInput type="number" name="duration" placeholder="Course duration" />
+            <TextInput type="number" name="price" placeholder="Course price" />
             <TextInput
               name="image"
               type="file"
-              placeholder="Course price"
+              placeholder="Course image"
               onChange={handleChangeImage}
             />
             <div className="course-submit-btn-wrapper">
