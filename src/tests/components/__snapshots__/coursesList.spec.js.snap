@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Home should render correctly 1`] = `
+<div
+  className="course-list-main-container"
+>
+  <div
+    className="swiper-container course-list-swiper"
+  >
+    <div
+      className="swiper-wrapper"
+    />
+  </div>
+</div>
+`;

@@ -22,17 +22,6 @@ describe('Home', () => {
     expect(tree).toMatchSnapshot();
   });
 
-  it('should renders courses title', () => {
-    render(
-      <BrowserRouter>
-        <Provider store={store}>
-          <Route path="/" component={Home} />
-        </Provider>
-      </BrowserRouter>,
-    );
-    expect(() => screen.getByText(/courses/i)).toThrow();
-  });
-
   it('should not render an unknown link', () => {
     render(
       <BrowserRouter>
