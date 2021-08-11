@@ -73,7 +73,7 @@ export const updateUserProfileAsync = (user) => async (dispatch) => {
       newUser.avatar = data.url;
       if (!data.url) throw new Error('Something went wrong!');
       const response = await http.put(`${apiEndPoint}/users/${user.id}`, { user: newUser });
-      storage.setAuthToken(response.data.data);
+      storage.setAuthToken(response.data);
       const loggedInUser = jwt.decode(response.data);
       dispatch(updateUserSuccess(loggedInUser));
       toast.success('Profile updated successfully!');
