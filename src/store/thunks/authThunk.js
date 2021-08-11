@@ -16,9 +16,7 @@ import http from '../../services/http';
 
 const apiEndPoint = process.env.REACT_APP_API_END_POINT;
 const cloudinaryEndPoint = process.env.REACT_APP_CLOUDINARY_ENDPOINT;
-// const cloudinaryEndPoint = 'https://api.cloudinary.com/v1_1/fidbagraphicscode/image/upload';
 const uploadPreset = process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET;
-// const uploadPreset = 'coursebingo';
 
 export const signupUserAsync = (user) => async (dispatch) => {
   dispatch(authApiCallStart());
@@ -28,6 +26,7 @@ export const signupUserAsync = (user) => async (dispatch) => {
     const loggedInUser = jwt.decode(response.data);
     dispatch(signupSuccess(loggedInUser));
     toast.success(`Welcome ${loggedInUser.first_name}!`);
+    window.location.reload();
   } catch (error) {
     dispatch(signupFailure(error.response.data.message));
     toast.error(error.response.data.message || 'Something went wrong!');
@@ -42,6 +41,7 @@ export const loginUserAsync = (user) => async (dispatch) => {
     const loggedInUser = jwt.decode(response.data.data);
     dispatch(loginSuccess(loggedInUser));
     toast.success(`😊 ${response.data.message}`);
+    window.location.reload();
   } catch (error) {
     dispatch(loginFailure(error.response.data.message));
     toast.error(`😢 ${error.response.data.message}`);
@@ -77,12 +77,14 @@ export const updateUserProfileAsync = (user) => async (dispatch) => {
       const loggedInUser = jwt.decode(response.data);
       dispatch(updateUserSuccess(loggedInUser));
       toast.success('Profile updated successfully!');
+      window.location.reload();
     } else {
       const response = await http.put(`${apiEndPoint}/users/${user.id}`, { user: newUser });
       storage.setAuthToken(response.data);
       const loggedInUser = jwt.decode(response.data);
       dispatch(updateUserSuccess(loggedInUser));
       toast.success('Profile updated successfully!');
+      window.location.reload();
     }
   } catch (error) {
     dispatch(updateUserFailure(error.response ? error.response.data.message : 'Something went wrong!'));
