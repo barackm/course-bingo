@@ -96,8 +96,7 @@ const CourseDetails = (props) => {
                   image
                   || 'https://images.unsplash.com/photo-1501556466850-7c9fa1fccb4c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=401&q=80'
                 }
-                alt=""
-                srcSet=""
+                alt="course"
               />
               <div className="course-details-author d-flex flex-between">
                 <Link to={`/profile/${id}`} className="course-details-author-names d-flex flex-center">
