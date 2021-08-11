@@ -10,22 +10,6 @@ describe('Favourite reducer', () => {
       list: [],
     });
   });
-
-  it('should handle ADD_FAVOURITE_SUCCESS', () => {
-    store.dispatch({
-      type: 'ADD_FAVOURITE_SUCCESS',
-      payload: { name: 'Test' },
-    });
-    expect(store.getState().favourites.list).toEqual([{ name: 'Test' }]);
-  });
-  it('should handle REMOVE_FAVOURITE_SUCCESS', () => {
-    store.dispatch({
-      type: 'REMOVE_FAVOURITE_SUCCESS',
-      payload: { name: 'Test' },
-    });
-    expect(store.getState().favourites.list).toEqual([]);
-  });
-  console.log(store.getState().favourites);
   it('should handle the API_CALL_BEGIN action', () => {
     store.dispatch({ type: 'API_CALL_BEGIN' });
     expect(store.getState().favourites.loading).toBe(true);
