@@ -10,6 +10,8 @@
 ![screenshot](./Screenshot4.png)
 ![screenshot](./Screenshot5.png)
 ![screenshot](./Screenshot6.png)
+![screenshot](./Screenshot7.png)
+![screenshot](./Screenshot9.png)
 
 ## Built With
 
