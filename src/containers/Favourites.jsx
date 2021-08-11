@@ -12,7 +12,6 @@ import Counter from '../components/common/Counter';
 import LoadingSpinner from '../components/common/LoadingSpinner';
 
 const Favourites = (props) => {
-  const [currentIndex, setCurrentIndex] = React.useState(0);
   const {
     favourites,
     history,
@@ -21,6 +20,7 @@ const Favourites = (props) => {
     loadFavourites,
     loading,
   } = props;
+  const [currentIndex, setCurrentIndex] = React.useState(favourites.length > 0 ? 1 : 0);
 
   useEffect(() => {
     if (!currentUser) history.replace('/login');
