@@ -133,7 +133,7 @@ const Dashboard = (props) => {
                 onIndexChange={handleIndexChange}
               />
               <div className="d-flex flex-center counter-container">
-                <Counter max={courses.length} min={currentIndex} />
+                <Counter max={courses.length} min={currentIndex + 1} />
               </div>
             </>
           )}

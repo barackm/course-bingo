@@ -20,7 +20,7 @@ const Favourites = (props) => {
     loadFavourites,
     loading,
   } = props;
-  const [currentIndex, setCurrentIndex] = React.useState(1);
+  const [currentIndex, setCurrentIndex] = React.useState(0);
 
   useEffect(() => {
     if (!currentUser) history.replace('/login');
@@ -59,7 +59,7 @@ const Favourites = (props) => {
             <h3 className="no-favourites text-center d-flex flex-center">Sorry, you don&apos;t have favourite courses yet.</h3>
           ) : (
             <div className="counter-container d-flex flex-center">
-              <Counter max={favourites.length} min={currentIndex} />
+              <Counter max={favourites.length} min={currentIndex + 1} />
             </div>
           )}
         </>
