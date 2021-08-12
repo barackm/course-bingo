@@ -20,7 +20,7 @@ const Favourites = (props) => {
     loadFavourites,
     loading,
   } = props;
-  const [currentIndex, setCurrentIndex] = React.useState(favourites.length > 0 ? 1 : 0);
+  const [currentIndex, setCurrentIndex] = React.useState(favourites.length === 0 ? 0 : 1);
 
   useEffect(() => {
     if (!currentUser) history.replace('/login');
