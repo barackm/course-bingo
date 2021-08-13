@@ -96,6 +96,7 @@ const EditProfile = ({
               name="avatar"
               type="file"
               placeholder="Avatar"
+              accept="image/*"
               onChange={handleChangeImage}
             />
             <div className="course-submit-btn-wrapper">

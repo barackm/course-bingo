@@ -90,6 +90,7 @@ const CourseForm = ({
               type="file"
               placeholder="Course image"
               onChange={handleChangeImage}
+              accept="image/*"
             />
             <div className="course-submit-btn-wrapper">
               <SubmitBtn label="Save course" />
