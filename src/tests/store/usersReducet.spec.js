@@ -8,6 +8,7 @@ describe('Users reducer', () => {
       loading: false,
       list: [],
       error: null,
+      foundUser: null,
     });
   });
   it('should handle the API_CALL_BEGIN action', () => {
