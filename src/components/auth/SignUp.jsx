@@ -32,9 +32,10 @@ const SignUp = (props) => {
   });
   const handleSubmit = (values) => {
     const { signupUser } = props;
+    const { email, password } = values;
     const user = {
-      email: values.email,
-      password: values.password,
+      ...email,
+      ...password,
       first_name: values.firstname,
       last_name: values.lastname,
       password_confirmation: values.passwordConfirmation,
