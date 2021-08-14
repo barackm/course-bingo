@@ -16,18 +16,19 @@ import EditProfile from '../components/EditProfile';
 import { toggleSidebar } from '../store/actions/actionCreators';
 import { updateUserProfileAsync } from '../store/thunks/authThunk';
 
-const Profile = ({
-  isAuthenticated,
-  loadUser,
-  history,
-  match,
-  foundUser,
-  error,
-  loading,
-  toggleSidebar,
-  currentUser,
-  updateUserProfile,
-}) => {
+const Profile = (props) => {
+  const {
+    isAuthenticated,
+    loadUser,
+    history,
+    match,
+    foundUser,
+    error,
+    loading,
+    toggleSidebar,
+    currentUser,
+    updateUserProfile,
+  } = props;
   const [showEditForm, setShowEditForm] = useState(false);
   useEffect(() => {
     if (!isAuthenticated) {

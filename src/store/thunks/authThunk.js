@@ -10,6 +10,7 @@ import {
   authLogout,
   updateUserSuccess,
   updateUserFailure,
+  loadUserSuccess,
 } from '../actions/actionCreators';
 import storage from '../../utils/localStorage';
 import http from '../../services/http';
@@ -26,7 +27,6 @@ export const signupUserAsync = (user) => async (dispatch) => {
     const loggedInUser = jwt.decode(response.data);
     dispatch(signupSuccess(loggedInUser));
     toast.success(`Welcome ${loggedInUser.first_name}!`);
-    window.location.reload();
   } catch (error) {
     dispatch(signupFailure(error.response.data.message));
     toast.error(error.response.data.message || 'Something went wrong!');
@@ -41,7 +41,6 @@ export const loginUserAsync = (user) => async (dispatch) => {
     const loggedInUser = jwt.decode(response.data.data);
     dispatch(loginSuccess(loggedInUser));
     toast.success(`😊 ${response.data.message}`);
-    window.location.reload();
   } catch (error) {
     dispatch(loginFailure(error.response.data.message));
     toast.error(`😢 ${error.response.data.message}`);
@@ -76,12 +75,14 @@ export const updateUserProfileAsync = (user) => async (dispatch) => {
       storage.setAuthToken(response.data);
       const loggedInUser = jwt.decode(response.data);
       dispatch(updateUserSuccess(loggedInUser));
+      dispatch(loadUserSuccess(loggedInUser));
       toast.success('Profile updated successfully!');
     } else {
       const response = await http.put(`${apiEndPoint}/users/${user.id}`, { user: newUser });
       storage.setAuthToken(response.data);
       const loggedInUser = jwt.decode(response.data);
       dispatch(updateUserSuccess(loggedInUser));
+      dispatch(loadUserSuccess(loggedInUser));
       toast.success('Profile updated successfully!');
     }
   } catch (error) {
