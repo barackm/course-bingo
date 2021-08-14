@@ -7,7 +7,7 @@ import { IconContext } from 'react-icons';
 import { GoSearch } from 'react-icons/go';
 import { RiPencilFill } from 'react-icons/ri';
 
-import loadUserAsync from '../store/thunks/userThunk';
+import { loadUserAsync } from '../store/thunks/usersThunk';
 import Navbar from '../components/common/Navbar';
 import LoadingSpinner from '../components/common/LoadingSpinner';
 import defaultAvatar from '../components/defaultAvatar.png';
@@ -134,9 +134,9 @@ Profile.propTypes = {
 const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
   currentUser: state.auth.currentUser,
-  foundUser: state.user.foundUser,
-  loading: state.user.loading,
-  error: state.user.error,
+  foundUser: state.users.foundUser,
+  loading: state.users.loading,
+  error: state.users.error,
 });
 
 const mapDispatchToProps = {

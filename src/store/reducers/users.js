@@ -4,10 +4,13 @@ import {
   LOAD_USERS_SUCCESS,
   REMOVE_USER_FAILURE,
   REMOVE_USER_SUCCESS,
+  LOAD_USER_SUCCESS,
+  LOAD_USER_FAILURE,
 } from '../actions/actionTypes';
 
 const initialState = {
   list: [],
+  foundUser: null,
   loading: false,
   error: null,
 };
@@ -44,6 +47,20 @@ const users = (state = initialState, action) => {
       return {
         ...state,
         error: action.payload,
+        loading: false,
+      };
+    case LOAD_USER_SUCCESS:
+      return {
+        ...state,
+        foundUser: action.payload,
+        error: null,
+        loading: false,
+      };
+    case LOAD_USER_FAILURE:
+      return {
+        ...state,
+        error: action.payload,
+        loading: false,
       };
     default:
       return state;

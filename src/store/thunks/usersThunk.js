@@ -6,6 +6,8 @@ import {
   loadUsersSuccess,
   removeUserFailure,
   removeUserSuccess,
+  loadUserFailure,
+  loadUserSuccess,
 } from '../actions/actionCreators';
 import http from '../../services/http';
 
@@ -39,5 +41,24 @@ export const removeUserAsync = (userId) => async (dispatch) => {
       ),
     );
     toast.error(error.response ? error.response.data : 'Failed to remove user');
+  }
+};
+
+export const loadUserAsync = (userId) => async (dispatch) => {
+  dispatch(apiCallBegin());
+  try {
+    const response = await http.get(`${apiEndPoint}/users/${userId}`);
+    dispatch(loadUserSuccess(response.data));
+  } catch (error) {
+    dispatch(
+      loadUserFailure(
+        error.response
+          ? error.response.data.message
+          : 'Failed to load the user',
+      ),
+    );
+    toast.error(
+      error.response ? error.response.data.message : 'Failed to load the user',
+    );
   }
 };
