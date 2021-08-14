@@ -52,7 +52,7 @@ export const addCourseAsync = (course) => async (dispatch, getState) => {
         mode: 'cors',
       });
       const data = await responseImage.json();
-      newCourse.image = data.url;
+      newCourse.image = data.secure_url;
       const response = await http.post(`${apiEndPoint}/courses`, newCourse);
       dispatch(addCourseSuccess(response.data));
       toast.success('Course added');

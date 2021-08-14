@@ -70,21 +70,19 @@ export const updateUserProfileAsync = (user) => async (dispatch) => {
       formData.append('upload_preset', uploadPreset);
       const responseImage = await fetch(cloudinaryEndPoint, { method: 'POST', body: formData, mode: 'cors' });
       const data = await responseImage.json();
-      newUser.avatar = data.url;
+      newUser.avatar = data.secure_url;
       if (!data.url) throw new Error('Something went wrong!');
       const response = await http.put(`${apiEndPoint}/users/${user.id}`, { user: newUser });
       storage.setAuthToken(response.data);
       const loggedInUser = jwt.decode(response.data);
       dispatch(updateUserSuccess(loggedInUser));
       toast.success('Profile updated successfully!');
-      window.location.reload();
     } else {
       const response = await http.put(`${apiEndPoint}/users/${user.id}`, { user: newUser });
       storage.setAuthToken(response.data);
       const loggedInUser = jwt.decode(response.data);
       dispatch(updateUserSuccess(loggedInUser));
       toast.success('Profile updated successfully!');
-      window.location.reload();
     }
   } catch (error) {
     dispatch(updateUserFailure(error.response ? error.response.data.message : 'Something went wrong!'));
