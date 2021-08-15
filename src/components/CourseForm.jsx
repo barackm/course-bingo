@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import * as Yup from 'yup';
 import PropTypes from 'prop-types';
 import { IconContext } from 'react-icons';
 import { GrClose } from 'react-icons/gr';
@@ -8,22 +7,7 @@ import { toast } from 'react-toastify';
 import AppForm from './common/AppForm';
 import TextInput from './common/TextInput';
 import SubmitBtn from './common/SubmitBtn';
-
-const validationSchema = Yup.object().shape({
-  name: Yup.string()
-    .required('Name is required')
-    .min(3, 'Name must be at least 3 characters long')
-    .max(80, 'Name must be between 3 and 80 characters')
-    .label('Name'),
-  description: Yup.string()
-    .required('Description is required')
-    .min(10, 'Description must be at least 10 characters long')
-    .max(250, 'Description must be between 10 and 250 characters')
-    .label('Description'),
-  price: Yup.number().required().label('Price'),
-  duration: Yup.number().required().label('Duration'),
-  id: Yup.number(),
-});
+import validationSchema from './validation/courseValidation';
 
 const CourseForm = ({
   onSubmit, course, shown, onToggleCourseForm,
@@ -77,7 +61,7 @@ const CourseForm = ({
             duration: duration || '',
             id: id || '',
           }}
-          validationSchema={validationSchema}
+          validate={validationSchema}
           onSubmit={handleSubmit}
         >
           <form className="course-form flex-unit">

@@ -2,28 +2,11 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import * as Yup from 'yup';
 import { signupUserAsync } from '../../store/thunks/authThunk';
 import AppForm from '../common/AppForm';
 import AppInput from '../common/AppInput';
 import SubmitBtn from '../common/SubmitBtn';
-
-const validationSchema = Yup.object().shape({
-  email: Yup.string()
-    .email('Enter valid email')
-    .required('Email is required')
-    .label('Email'),
-  password: Yup.string()
-    .required('Password is required')
-    .min(6)
-    .label('Password'),
-  passwordConfirmation: Yup.string()
-    .required('Password confirmation is required')
-    .min(6)
-    .label('Password confirmation'),
-  firstname: Yup.string().min(3).max(250).required('Firstname is required'),
-  lastname: Yup.string().min(3).max(250).required('Lastname is required'),
-});
+import validationSchema from '../validation/userValidation';
 
 const SignUp = (props) => {
   useEffect(() => {
@@ -34,8 +17,8 @@ const SignUp = (props) => {
     const { signupUser } = props;
     const { email, password } = values;
     const user = {
-      ...email,
-      ...password,
+      email,
+      password,
       first_name: values.firstname,
       last_name: values.lastname,
       password_confirmation: values.passwordConfirmation,
@@ -56,7 +39,7 @@ const SignUp = (props) => {
           passwordConfirmation: '',
         }}
         onSubmit={handleSubmit}
-        validationSchema={validationSchema}
+        validate={validationSchema}
       >
         <form className="login-page-main d-flex flex-column">
           <div className="login-header d-flex flex-center flex-column text-center">

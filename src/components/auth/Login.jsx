@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import * as Yup from 'yup';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -8,17 +7,7 @@ import SubmitBtn from '../common/SubmitBtn';
 import AppForm from '../common/AppForm';
 import AppInput from '../common/AppInput';
 import { loginUserAsync } from '../../store/thunks/authThunk';
-
-const validationSchema = Yup.object().shape({
-  email: Yup.string()
-    .email('Enter valid email')
-    .required('Email is required')
-    .label('Email'),
-  password: Yup.string()
-    .required('Password is required')
-    .min(6)
-    .label('Password'),
-});
+import signinValidationSchema from '../validation/signinValidation';
 
 const Login = (props) => {
   useEffect(() => {
@@ -38,7 +27,7 @@ const Login = (props) => {
       <AppForm
         initialValues={{ email: '', password: '' }}
         onSubmit={handleSubmit}
-        validationSchema={validationSchema}
+        validate={signinValidationSchema}
       >
         <form className="login-page-main d-flex flex-column">
           <div className="login-header d-flex flex-center flex-column text-center">

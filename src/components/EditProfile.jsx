@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import * as Yup from 'yup';
 import PropTypes from 'prop-types';
 import { IconContext } from 'react-icons';
 import { GrClose } from 'react-icons/gr';
@@ -8,17 +7,7 @@ import { toast } from 'react-toastify';
 import AppForm from './common/AppForm';
 import TextInput from './common/TextInput';
 import SubmitBtn from './common/SubmitBtn';
-
-const validationSchema = Yup.object().shape({
-  email: Yup.string()
-    .email('Enter valid email')
-    .required('Email is required')
-    .label('Email'),
-  password: Yup.string().min(6).label('Password').required('Password is required'),
-  passwordConfirmation: Yup.string().min(6).label('Password confirmation').required('Password confirmation is required'),
-  firstName: Yup.string().min(3).max(250).required('Firstname is required'),
-  lastName: Yup.string().min(3).max(250).required('Lastname is required'),
-});
+import validationSchema from './validation/userValidation';
 
 const EditProfile = ({
   onSubmit, user, shown, onToggleEditProfile,
@@ -32,8 +21,8 @@ const EditProfile = ({
     if (imageUpload.size > 1048576) return toast.warning('File size must be less than or equal to 1 MB');
     onSubmit({
       id: user.id,
-      first_name: values.firstName,
-      last_name: values.lastName,
+      first_name: values.firstname,
+      last_name: values.lastname,
       email: values.email,
       avatar: imageUpload,
       password: values.password,
@@ -41,7 +30,7 @@ const EditProfile = ({
     });
     return onToggleEditProfile();
   };
-  const { first_name: firstName, last_name: lastName, email } = user;
+  const { first_name: firstname, last_name: lastname, email } = user;
   return (
     <div
       className={
@@ -72,18 +61,18 @@ const EditProfile = ({
         </div>
         <AppForm
           initialValues={{
-            firstName,
-            lastName,
+            firstname,
+            lastname,
             email,
             password: '',
             passwordConfirmation: '',
           }}
-          validationSchema={validationSchema}
+          validate={validationSchema}
           onSubmit={handleSubmit}
         >
           <form className="course-form flex-unit">
-            <TextInput name="firstName" placeholder="Firstname" />
-            <TextInput name="lastName" placeholder="Lastname" />
+            <TextInput name="firstname" placeholder="Firstname" />
+            <TextInput name="lastname" placeholder="Lastname" />
             <TextInput name="email" placeholder="Email" />
             <TextInput name="password" type="password" placeholder="password" />
             <TextInput
