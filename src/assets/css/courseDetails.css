@@ -1,0 +1,118 @@
+.course-details-page-main-container {
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+.course-details-content {
+  flex: 1;
+}
+
+.course-details-image-wrapper {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  height: auto;
+  min-height: 20rem;
+  align-items: flex-end;
+}
+
+.course-details-image-wrapper img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.course-details-summary .description {
+  padding: 0.7rem 2.5rem;
+}
+
+.course-details-summary .description h4 {
+  margin: 0;
+  font-weight: bold;
+}
+
+.course-details-summary .description p {
+  color: var(--dark-light);
+}
+
+.course-details-favoutite-btn {
+  background-color: var(--primary);
+  padding: 1rem 0;
+  color: var(--white);
+}
+
+.course-details-checvron-icon-container {
+  padding: 0.1rem 0;
+}
+
+.course-details-icon {
+  font-size: 1.4rem;
+}
+
+.course-details-ovelay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.24);
+  z-index: 9;
+}
+
+.course-author-details {
+  z-index: 999;
+}
+
+.course-details-author {
+  z-index: 999;
+  width: 100%;
+  height: 100%;
+}
+
+.course-details-author-names {
+  padding-left: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+.course-details-author-names .image-wrapper-course {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 0.7rem;
+}
+
+.course-details-author-names .image-wrapper-course img {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  position: relative;
+  z-index: 99;
+}
+
+.author-details-name {
+  align-items: flex-start;
+}
+
+.author-details-name h3 {
+  margin: 0;
+  color: var(--white);
+}
+
+.course-price-duration {
+  padding-right: 1.5rem;
+  padding-bottom: 1.7rem;
+}
+
+.course-price-duration h3 {
+  margin: 0;
+  color: var(--white);
+}
+
+.course-price-duration span {
+  color: var(--white);
+}

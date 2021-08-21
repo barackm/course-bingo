@@ -1,0 +1,134 @@
+.home-main-container {
+  position: relative;
+}
+
+.navbar-main-container {
+  background-color: var(--white);
+  padding-top: 0.7rem;
+}
+
+.navbar-btn {
+  width: 5rem;
+  background-color: transparent;
+}
+
+.home-hamburger {
+  font-size: 1.7rem;
+  color: var(--dark);
+}
+
+.home-search-icon {
+  font-size: 1.2rem;
+  color: var(--dark);
+}
+
+.navbar-menu-title {
+  font-weight: 400;
+  text-transform: capitalize;
+  font-size: 1.5rem;
+}
+
+.course-main-wrapper {
+  border-radius: 0.5rem;
+  overflow: hidden;
+  background-color: var(--white);
+  box-shadow:
+    rgba(0, 0, 0, 0.1) 0 16px 25px -5px,
+    rgba(0, 0, 0, 0.04) 0 10px 10px -5px;
+  color: var(--dark);
+  margin-left: 2.2rem;
+  margin-right: 2.2rem;
+  position: relative;
+}
+
+.course-delete-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 999;
+}
+
+.course-delete-trash-icon {
+  color: var(--primary);
+  font-size: 1.8rem;
+}
+
+.course-info-wrapper {
+  padding: 1rem;
+}
+
+.course-image-wrapper {
+  width: 100%;
+  overflow: hidden;
+  height: 50vh;
+}
+
+.course-image-wrapper img {
+  width: 100%;
+  object-fit: cover;
+  height: 100%;
+}
+
+.course-author-image .image-wrapper {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 0.7rem;
+}
+
+.course-author-image .image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.course-name-title h4 {
+  margin: 0;
+  font-weight: 500;
+}
+
+.course-image-wrapper .image-wrapper img {
+  width: 100%;
+  height: 100%;
+}
+
+.course-author-name {
+  justify-content: center;
+}
+
+.course-author-name h4 {
+  margin: 0;
+  font-weight: 300;
+}
+
+.course-author-name .author-name {
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.course-author-duration {
+  padding-top: 0.7rem;
+}
+
+.counter-main-wraper {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.course-list-swiper {
+  padding: 2.2rem 0;
+}
+
+.loadin-spinner-wrapper {
+  height: 100%;
+}
+
+.spinner-main-container {
+  min-height: 70vh;
+}
+
+.no-favourites {
+  width: 80%;
+  margin: 0 auto;
+}

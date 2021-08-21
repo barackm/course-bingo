@@ -1,0 +1,34 @@
+.user-item-main-container {
+  border-bottom: 1px solid var(--light);
+  padding: 0.4rem 0;
+}
+
+.dashboard-user-details .dashboard-user-image-wrapper {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 1rem;
+  color: var(--dark);
+}
+
+.dashboard-user-details .dashboard-user-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.users-list-main-container {
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.dashboard-user-names h3 {
+  margin: 0;
+  text-transform: capitalize;
+}
+
+.dashboard-delete-trash-icon {
+  color: var(--primary);
+  font-size: 1.2rem;
+}
